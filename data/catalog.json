@@ -1,44 +1,389 @@
 [
-{"id":"ultra-form-scoop-neck-longline-bra","name":"Burgundy Red Ultra-Form Scoop Neck Longline Bra","category":"Women/Intimates","price":34.90,"color":"Burgundy Red","rating":4.6,"url":"https://www.quince.com/women/ultra-form-scoop-neck-longline-bra?color=burgundy-red"},
-{"id":"organic-cotton-boyshort-1","name":"Soft White Organic Cotton Boyshort","category":"Women/Intimates","price":7.50,"color":"Soft White","rating":4.7,"url":"https://www.quince.com/women/organic-cotton-boyshort-1?color=soft-white"},
-{"id":"organic-cotton-high-cut-thong-10442","name":"Soft White Organic Cotton High-Cut Thong","category":"Women/Intimates","price":7.50,"color":"Soft White","rating":4.8,"url":"https://www.quince.com/women/organic-cotton-high-cut-thong-10442?color=soft-white"},
-{"id":"everyday-fleece-cropped-half-zip-hoodie","name":"Black Everyday Fleece Cropped Half Zip Hoodie","category":"Women/Tops","price":44.90,"color":"Black","rating":4.7,"url":"https://www.quince.com/women/everyday-fleece-cropped-half-zip-hoodie?color=black"},
-{"id":"micro-ripstop-mid-rise-short","name":"Ironstone Grey Micro Ripstop Mid-Rise Hike Shorts","category":"Women/Activewear","price":34.90,"color":"Ironstone Grey","rating":4.8,"url":"https://www.quince.com/women/micro-ripstop-mid-rise-short?color=ironstone-grey"},
-{"id":"ultra-form-tennis-skort","name":"Storm Blue Ultra-Form Tennis Skort","category":"Women/Activewear","price":39.90,"color":"Storm Blue","rating":4.7,"url":"https://www.quince.com/women/ultra-form-tennis-skort?color=storm-blue"},
-{"id":"stretch-cotton-jersey-fitted-long-sleeve-t-shirt","name":"Twilight Blue Stretch Cotton Jersey Fitted Long Sleeve T-Shirt","category":"Women/Tees & Tanks","price":24.90,"color":"Twilight Blue","rating":4.5,"url":"https://www.quince.com/women/stretch-cotton-jersey-fitted-long-sleeve-t-shirt?color=twilight-blue"},
-{"id":"stretch-cotton-jersey-fitted-t-shirt","name":"Clove Brown Stretch Cotton Jersey Fitted T-Shirt","category":"Women/Tees & Tanks","price":19.90,"color":"Clove Brown","rating":4.7,"url":"https://www.quince.com/women/stretch-cotton-jersey-fitted-t-shirt?color=clove-brown"},
-{"id":"ultra-form-high-rise-legging-28","name":"Burgundy Red Ultra-Form High-Rise Legging","category":"Women/Activewear","price":44.90,"color":"Burgundy Red","rating":4.7,"url":"https://www.quince.com/women/ultra-form-high-rise-legging-28?color=burgundy-red"},
-{"id":"flowknit-pullover-crew","name":"Heather Dark Thyme Green Flowknit Pullover Crew","category":"Women/Sweaters","price":39.90,"color":"Heather Dark Thyme Green","rating":4.9,"url":"https://www.quince.com/women/flowknit-pullover-crew?color=heather-dark-thyme-green"},
-{"id":"flowknit-mid-rise-jogger-27.5","name":"Heather Dark Thyme Green Flowknit Mid-Rise Joggers","category":"Women/Lounge","price":44.90,"color":"Heather Dark Thyme Green","rating":4.8,"url":"https://www.quince.com/women/flowknit-mid-rise-jogger-27.5?color=heather-dark-thyme-green"},
-{"id":"flowknit-wide-leg","name":"Heather Storm Blue Flowknit Wide Leg Pants","category":"Women/Pants","price":44.90,"color":"Heather Storm Blue","rating":4.7,"url":"https://www.quince.com/women/flowknit-wide-leg?color=heather-storm-blue"},
-{"id":"organic-cotton-string-thong-6-pack","name":"Black/Sand/Heather Grey Organic Cotton String Thong (6-Pack)","category":"Women/Intimates","price":29.90,"color":"Black/Sand/Heather Grey","rating":3.8,"url":"https://www.quince.com/women/organic-cotton-string-thong-6-pack?color=black%2Fsand%2Fheather-grey"},
-{"id":"womens-responsible-down-hooded-short-parka","name":"Atlas Navy Responsible Down Hooded Short Parka","category":"Women/Outerwear","price":160.00,"color":"Atlas Navy","rating":4.8,"url":"https://www.quince.com/women/womens-responsible-down-hooded-short-parka?color=atlas-navy"},
-{"id":"premium-suede-bomber-jacket","name":"Washed Navy 100% Suede Bomber Jacket","category":"Men/Outerwear","price":200.00,"color":"Washed Navy","rating":4.9,"url":"https://www.quince.com/men/premium-suede-bomber-jacket?color=washed-navy"},
-{"id":"luxe-comfort-stretch-pique-polo","name":"Pine Green Commuter Stretch Pique Polo","category":"Men/Tops","price":32.00,"color":"Pine Green","rating":4.7,"url":"https://www.quince.com/men/luxe-comfort-stretch-pique-polo?color=pine-green"},
-{"id":"luxe-comfort-stretch-pique-button-down","name":"Pine Green Commuter Stretch Pique Long Sleeve Button Down","category":"Men/Tops","price":42.00,"color":"Pine Green","rating":4.6,"url":"https://www.quince.com/men/luxe-comfort-stretch-pique-button-down?color=pine-green"},
-{"id":"cashmere-turtleneck-sweater","name":"Brown Mongolian Cashmere Turtleneck Sweater","category":"Men/Cashmere","price":99.90,"color":"Brown","rating":4.9,"url":"https://www.quince.com/men/cashmere/cashmere-turtleneck-sweater?color=brown"},
-{"id":"responsible-down-puffer-jacket","name":"Dark Fossil Grey Responsible Down Puffer Jacket","category":"Men/Outerwear","price":175.00,"color":"Dark Fossil Grey","rating":4.7,"url":"https://www.quince.com/men/responsible-down-puffer-jacket?color=dark-fossil-grey"},
-{"id":"women-s-washable-silk-mini-skirt","name":"Stratus Blue 100% Washable Silk Mini Skirt","category":"Women/Skirts","price":64.90,"color":"Stratus Blue","rating":4.7,"url":"https://www.quince.com/women/women-s-washable-silk-mini-skirt?color=stratus-blue"},
-{"id":"women-s-washable-silk-mini-slip-dress","name":"Wine Tasting Red 100% Washable Silk Mini Slip Dress","category":"Women/Dresses","price":69.90,"color":"Wine Tasting Red","rating":4.8,"url":"https://www.quince.com/women/women-s-washable-silk-mini-slip-dress?color=wine-tasting-red"},
-{"id":"bamboo-jersey-long-sleeve-pajama-set","name":"Light Blue Bamboo Jersey Long Sleeve Pajama Set","category":"Women/Lounge & Pajamas","price":60.00,"color":"Light Blue","rating":4.8,"url":"https://www.quince.com/women/bamboo-jersey-long-sleeve-pajama-set?color=light-blue"},
-{"id":"extended-sizes-lightweight-cotton-cashmere-link-stitch-dolman-sweater","name":"Deep Brick Red Lightweight Cotton Cashmere Link-Stitch Dolman Sweater","category":"Women/Sweaters","price":55.00,"color":"Deep Brick Red","rating":4.8,"url":"https://www.quince.com/women/extended-sizes-lightweight-cotton-cashmere-link-stitch-dolman-sweater?color=deep-brick-red"},
-{"id":"beveled-edge-satin-finish-band","name":"Yellow Gold Beveled Edge Satin Finish Band","category":"Jewelry","price":998.00,"color":"Yellow Gold","rating":null,"url":"https://www.quince.com/unisex/beveled-edge-satin-finish-band?color=yellow-gold"},
-{"id":"faux-fur-tree-skirt-ivory","name":"Ivory Faux Fur Tree Skirt","category":"Home/Holiday","price":59.90,"color":"Ivory","rating":5.0,"url":"https://www.quince.com/home/faux-fur-tree-skirt?color=ivory"},
-{"id":"cotton-velvet-stocking-moss","name":"Moss Cotton Velvet Stocking","category":"Home/Holiday","price":19.90,"color":"Moss","rating":4.9,"url":"https://www.quince.com/home/cotton-velvet-stocking-?color=moss"},
-{"id":"reed-diffuser-pumpkin-cardamom","name":"Pumpkin Cardamom Reed Diffuser","category":"Home/Fragrance","price":30.00,"color":null,"rating":4.9,"url":"https://www.quince.com/"},
-{"id":"faux-fur-maxi-wrap-coat","name":"Coffee Bean Brown Faux Fur Maxi Wrap Coat","category":"Women/Outerwear","price":150.00,"color":"Coffee Bean Brown","rating":4.9,"url":"https://www.quince.com/"},
-{"id":"everyday-cozy-throw","name":"Walnut Everyday Cozy Throw","category":"Home/Bedding","price":59.90,"color":"Walnut","rating":4.9,"url":"https://www.quince.com/"},
-{"id":"comfort-stretch-trench-coat","name":"Dark Khaki Comfort Stretch Trench Coat","category":"Women/Outerwear","price":104.00,"color":"Dark Khaki","rating":4.8,"url":"https://www.quince.com/"},
-{"id":"sutton-shoulder-bag","name":"Black Sutton Shoulder Bag","category":"Bags & Accessories","price":168.00,"color":"Black","rating":5.0,"url":"https://www.quince.com/"},
-{"id":"leather-suede-low-profile-sneaker","name":"Metallic Silver Italian Leather & Suede Low Profile Sneaker","category":"Shoes","price":94.00,"color":"Metallic Silver","rating":4.8,"url":"https://www.quince.com/"},
-{"id":"wavy-wood-round-wall-mirror","name":"Antique Brass Wavy Wood Round Wall Mirror","category":"Home/Decor","price":259.90,"color":"Antique Brass","rating":null,"url":"https://www.quince.com/"},
-{"id":"organic-cotton-cable-crew-cardigan","name":"Chocolate Plum Brown 100% Organic Cotton Cable Crew Cardigan","category":"Women/Sweaters","price":55.00,"color":"Chocolate Plum Brown","rating":4.9,"url":"https://www.quince.com/"},
-{"id":"cashmere-layered-v-neck-sweater","name":"Heather Grey 100% Mongolian Cashmere Layered V-Neck Sweater","category":"Women/Cashmere","price":115.00,"color":"Heather Grey","rating":4.8,"url":"https://www.quince.com/"},
-{"id":"cashmere-cropped-crew-cardigan","name":"Black Mongolian Cashmere Cropped Crew Cardigan","category":"Women/Cashmere","price":89.90,"color":"Black","rating":4.9,"url":"https://www.quince.com/"},
-{"id":"bamboo-sheet-set","name":"White Bamboo Sheet Set","category":"Home/Bedding","price":100.00,"color":"White","rating":4.8,"url":"https://www.quince.com/"},
-{"id":"cashmere-tee","name":"Elk Brown Mongolian Cashmere Tee","category":"Women/Cashmere","price":49.90,"color":"Elk Brown","rating":4.8,"url":"https://www.quince.com/"},
-{"id":"engagement-ring-emerald-comfort-fit","name":"Yellow Gold Lab Grown Diamond Emerald Comfort Fit Engagement Ring - 2.5ct","category":"Jewelry","price":2100.00,"color":"Yellow Gold","rating":5.0,"url":"https://www.quince.com/"},
-{"id":"cashmere-dog-sweater","name":"True Navy Mongolian Cashmere Cable Knit Dog Sweater","category":"Pets","price":52.00,"color":"True Navy","rating":4.9,"url":"https://www.quince.com/"},
-{"id":"electric-kettle-fellow-corvo","name":"Black Fellow Corvo EKG Pro Electric Kettle","category":"Home/Kitchen","price":179.95,"color":"Black","rating":4.9,"url":"https://www.quince.com/"},
-{"id":"ceramic-vase-rippled","name":"White Sculptural Rippled Ceramic Vase","category":"Home/Decor","price":79.90,"color":"White","rating":4.3,"url":"https://www.quince.com/"}
+  {
+    "id": "ultra-form-scoop-neck-longline-bra",
+    "name": "Burgundy Red Ultra-Form Scoop Neck Longline Bra",
+    "category": "Women/Intimates",
+    "price": 34.9,
+    "color": "Burgundy Red",
+    "rating": 4.6,
+    "url": "https://www.quince.com/women/ultra-form-scoop-neck-longline-bra?color=burgundy-red"
+  },
+  {
+    "id": "organic-cotton-boyshort-1",
+    "name": "Soft White Organic Cotton Boyshort",
+    "category": "Women/Intimates",
+    "price": 7.5,
+    "color": "Soft White",
+    "rating": 4.7,
+    "url": "https://www.quince.com/women/organic-cotton-boyshort-1?color=soft-white"
+  },
+  {
+    "id": "organic-cotton-high-cut-thong-10442",
+    "name": "Soft White Organic Cotton High-Cut Thong",
+    "category": "Women/Intimates",
+    "price": 7.5,
+    "color": "Soft White",
+    "rating": 4.8,
+    "url": "https://www.quince.com/women/organic-cotton-high-cut-thong-10442?color=soft-white"
+  },
+  {
+    "id": "everyday-fleece-cropped-half-zip-hoodie",
+    "name": "Black Everyday Fleece Cropped Half Zip Hoodie",
+    "category": "Women/Tops",
+    "price": 44.9,
+    "color": "Black",
+    "rating": 4.7,
+    "url": "https://www.quince.com/women/everyday-fleece-cropped-half-zip-hoodie?color=black"
+  },
+  {
+    "id": "micro-ripstop-mid-rise-short",
+    "name": "Ironstone Grey Micro Ripstop Mid-Rise Hike Shorts",
+    "category": "Women/Activewear",
+    "price": 34.9,
+    "color": "Ironstone Grey",
+    "rating": 4.8,
+    "url": "https://www.quince.com/women/micro-ripstop-mid-rise-short?color=ironstone-grey"
+  },
+  {
+    "id": "ultra-form-tennis-skort",
+    "name": "Storm Blue Ultra-Form Tennis Skort",
+    "category": "Women/Activewear",
+    "price": 39.9,
+    "color": "Storm Blue",
+    "rating": 4.7,
+    "url": "https://www.quince.com/women/ultra-form-tennis-skort?color=storm-blue"
+  },
+  {
+    "id": "stretch-cotton-jersey-fitted-long-sleeve-t-shirt",
+    "name": "Twilight Blue Stretch Cotton Jersey Fitted Long Sleeve T-Shirt",
+    "category": "Women/Tees & Tanks",
+    "price": 24.9,
+    "color": "Twilight Blue",
+    "rating": 4.5,
+    "url": "https://www.quince.com/women/stretch-cotton-jersey-fitted-long-sleeve-t-shirt?color=twilight-blue"
+  },
+  {
+    "id": "stretch-cotton-jersey-fitted-t-shirt",
+    "name": "Clove Brown Stretch Cotton Jersey Fitted T-Shirt",
+    "category": "Women/Tees & Tanks",
+    "price": 19.9,
+    "color": "Clove Brown",
+    "rating": 4.7,
+    "url": "https://www.quince.com/women/stretch-cotton-jersey-fitted-t-shirt?color=clove-brown"
+  },
+  {
+    "id": "ultra-form-high-rise-legging-28",
+    "name": "Burgundy Red Ultra-Form High-Rise Legging",
+    "category": "Women/Activewear",
+    "price": 44.9,
+    "color": "Burgundy Red",
+    "rating": 4.7,
+    "url": "https://www.quince.com/women/ultra-form-high-rise-legging-28?color=burgundy-red"
+  },
+  {
+    "id": "flowknit-pullover-crew",
+    "name": "Heather Dark Thyme Green Flowknit Pullover Crew",
+    "category": "Women/Sweaters",
+    "price": 39.9,
+    "color": "Heather Dark Thyme Green",
+    "rating": 4.9,
+    "url": "https://www.quince.com/women/flowknit-pullover-crew?color=heather-dark-thyme-green"
+  },
+  {
+    "id": "flowknit-mid-rise-jogger-27.5",
+    "name": "Heather Dark Thyme Green Flowknit Mid-Rise Joggers",
+    "category": "Women/Lounge",
+    "price": 44.9,
+    "color": "Heather Dark Thyme Green",
+    "rating": 4.8,
+    "url": "https://www.quince.com/women/flowknit-mid-rise-jogger-27.5?color=heather-dark-thyme-green"
+  },
+  {
+    "id": "flowknit-wide-leg",
+    "name": "Heather Storm Blue Flowknit Wide Leg Pants",
+    "category": "Women/Pants",
+    "price": 44.9,
+    "color": "Heather Storm Blue",
+    "rating": 4.7,
+    "url": "https://www.quince.com/women/flowknit-wide-leg?color=heather-storm-blue"
+  },
+  {
+    "id": "organic-cotton-string-thong-6-pack",
+    "name": "Black/Sand/Heather Grey Organic Cotton String Thong (6-Pack)",
+    "category": "Women/Intimates",
+    "price": 29.9,
+    "color": "Black/Sand/Heather Grey",
+    "rating": 3.8,
+    "url": "https://www.quince.com/women/organic-cotton-string-thong-6-pack?color=black%2Fsand%2Fheather-grey"
+  },
+  {
+    "id": "womens-responsible-down-hooded-short-parka",
+    "name": "Atlas Navy Responsible Down Hooded Short Parka",
+    "category": "Women/Outerwear",
+    "price": 160.0,
+    "color": "Atlas Navy",
+    "rating": 4.8,
+    "url": "https://www.quince.com/women/womens-responsible-down-hooded-short-parka?color=atlas-navy"
+  },
+  {
+    "id": "premium-suede-bomber-jacket",
+    "name": "Washed Navy 100% Suede Bomber Jacket",
+    "category": "Men/Outerwear",
+    "price": 200.0,
+    "color": "Washed Navy",
+    "rating": 4.9,
+    "url": "https://www.quince.com/men/premium-suede-bomber-jacket?color=washed-navy"
+  },
+  {
+    "id": "luxe-comfort-stretch-pique-polo",
+    "name": "Pine Green Commuter Stretch Pique Polo",
+    "category": "Men/Tops",
+    "price": 32.0,
+    "color": "Pine Green",
+    "rating": 4.7,
+    "url": "https://www.quince.com/men/luxe-comfort-stretch-pique-polo?color=pine-green"
+  },
+  {
+    "id": "luxe-comfort-stretch-pique-button-down",
+    "name": "Pine Green Commuter Stretch Pique Long Sleeve Button Down",
+    "category": "Men/Tops",
+    "price": 42.0,
+    "color": "Pine Green",
+    "rating": 4.6,
+    "url": "https://www.quince.com/men/luxe-comfort-stretch-pique-button-down?color=pine-green"
+  },
+  {
+    "id": "cashmere-turtleneck-sweater",
+    "name": "Brown Mongolian Cashmere Turtleneck Sweater",
+    "category": "Men/Cashmere",
+    "price": 99.9,
+    "color": "Brown",
+    "rating": 4.9,
+    "url": "https://www.quince.com/men/cashmere/cashmere-turtleneck-sweater?color=brown"
+  },
+  {
+    "id": "responsible-down-puffer-jacket",
+    "name": "Dark Fossil Grey Responsible Down Puffer Jacket",
+    "category": "Men/Outerwear",
+    "price": 175.0,
+    "color": "Dark Fossil Grey",
+    "rating": 4.7,
+    "url": "https://www.quince.com/men/responsible-down-puffer-jacket?color=dark-fossil-grey"
+  },
+  {
+    "id": "women-s-washable-silk-mini-skirt",
+    "name": "Stratus Blue 100% Washable Silk Mini Skirt",
+    "category": "Women/Skirts",
+    "price": 64.9,
+    "color": "Stratus Blue",
+    "rating": 4.7,
+    "url": "https://www.quince.com/women/women-s-washable-silk-mini-skirt?color=stratus-blue"
+  },
+  {
+    "id": "women-s-washable-silk-mini-slip-dress",
+    "name": "Wine Tasting Red 100% Washable Silk Mini Slip Dress",
+    "category": "Women/Dresses",
+    "price": 69.9,
+    "color": "Wine Tasting Red",
+    "rating": 4.8,
+    "url": "https://www.quince.com/women/women-s-washable-silk-mini-slip-dress?color=wine-tasting-red"
+  },
+  {
+    "id": "bamboo-jersey-long-sleeve-pajama-set",
+    "name": "Light Blue Bamboo Jersey Long Sleeve Pajama Set",
+    "category": "Women/Lounge & Pajamas",
+    "price": 60.0,
+    "color": "Light Blue",
+    "rating": 4.8,
+    "url": "https://www.quince.com/women/bamboo-jersey-long-sleeve-pajama-set?color=light-blue"
+  },
+  {
+    "id": "extended-sizes-lightweight-cotton-cashmere-link-stitch-dolman-sweater",
+    "name": "Deep Brick Red Lightweight Cotton Cashmere Link-Stitch Dolman Sweater",
+    "category": "Women/Sweaters",
+    "price": 55.0,
+    "color": "Deep Brick Red",
+    "rating": 4.8,
+    "url": "https://www.quince.com/women/extended-sizes-lightweight-cotton-cashmere-link-stitch-dolman-sweater?color=deep-brick-red"
+  },
+  {
+    "id": "beveled-edge-satin-finish-band",
+    "name": "Yellow Gold Beveled Edge Satin Finish Band",
+    "category": "Jewelry",
+    "price": 998.0,
+    "color": "Yellow Gold",
+    "rating": null,
+    "url": "https://www.quince.com/unisex/beveled-edge-satin-finish-band?color=yellow-gold"
+  },
+  {
+    "id": "faux-fur-tree-skirt-ivory",
+    "name": "Ivory Faux Fur Tree Skirt",
+    "category": "Home/Holiday",
+    "price": 59.9,
+    "color": "Ivory",
+    "rating": 5.0,
+    "url": "https://www.quince.com/home/faux-fur-tree-skirt?color=ivory"
+  },
+  {
+    "id": "cotton-velvet-stocking-moss",
+    "name": "Moss Cotton Velvet Stocking",
+    "category": "Home/Holiday",
+    "price": 19.9,
+    "color": "Moss",
+    "rating": 4.9,
+    "url": "https://www.quince.com/home/cotton-velvet-stocking-?color=moss"
+  },
+  {
+    "id": "reed-diffuser-pumpkin-cardamom",
+    "name": "Pumpkin Cardamom Reed Diffuser",
+    "category": "Home/Fragrance",
+    "price": 30.0,
+    "color": null,
+    "rating": 4.9,
+    "url": "https://www.quince.com/",
+    "url_verified": false
+  },
+  {
+    "id": "faux-fur-maxi-wrap-coat",
+    "name": "Coffee Bean Brown Faux Fur Maxi Wrap Coat",
+    "category": "Women/Outerwear",
+    "price": 150.0,
+    "color": "Coffee Bean Brown",
+    "rating": 4.9,
+    "url": "https://www.quince.com/",
+    "url_verified": false
+  },
+  {
+    "id": "everyday-cozy-throw",
+    "name": "Walnut Everyday Cozy Throw",
+    "category": "Home/Bedding",
+    "price": 59.9,
+    "color": "Walnut",
+    "rating": 4.9,
+    "url": "https://www.quince.com/",
+    "url_verified": false
+  },
+  {
+    "id": "comfort-stretch-trench-coat",
+    "name": "Dark Khaki Comfort Stretch Trench Coat",
+    "category": "Women/Outerwear",
+    "price": 104.0,
+    "color": "Dark Khaki",
+    "rating": 4.8,
+    "url": "https://www.quince.com/men/comfort-stretch-trench-coat-1?color=dark-khaki"
+  },
+  {
+    "id": "sutton-shoulder-bag",
+    "name": "Black Sutton Shoulder Bag",
+    "category": "Bags & Accessories",
+    "price": 168.0,
+    "color": "Black",
+    "rating": 5.0,
+    "url": "https://www.quince.com/women/sutton-shoulder-bag?color=black"
+  },
+  {
+    "id": "leather-suede-low-profile-sneaker",
+    "name": "Metallic Silver Italian Leather & Suede Low Profile Sneaker",
+    "category": "Shoes",
+    "price": 94.0,
+    "color": "Metallic Silver",
+    "rating": 4.8,
+    "url": "https://www.quince.com/",
+    "url_verified": false
+  },
+  {
+    "id": "wavy-wood-round-wall-mirror",
+    "name": "Antique Brass Wavy Wood Round Wall Mirror",
+    "category": "Home/Decor",
+    "price": 259.9,
+    "color": "Antique Brass",
+    "rating": null,
+    "url": "https://www.quince.com/",
+    "url_verified": false
+  },
+  {
+    "id": "organic-cotton-cable-crew-cardigan",
+    "name": "Chocolate Plum Brown 100% Organic Cotton Cable Crew Cardigan",
+    "category": "Women/Sweaters",
+    "price": 55.0,
+    "color": "Chocolate Plum Brown",
+    "rating": 4.9,
+    "url": "https://www.quince.com/",
+    "url_verified": false
+  },
+  {
+    "id": "cashmere-layered-v-neck-sweater",
+    "name": "Heather Grey 100% Mongolian Cashmere Layered V-Neck Sweater",
+    "category": "Women/Cashmere",
+    "price": 115.0,
+    "color": "Heather Grey",
+    "rating": 4.8,
+    "url": "https://www.quince.com/women/cashmere/cashmere-v-neck-sweater?color=heather-grey"
+  },
+  {
+    "id": "cashmere-cropped-crew-cardigan",
+    "name": "Black Mongolian Cashmere Cropped Crew Cardigan",
+    "category": "Women/Cashmere",
+    "price": 89.9,
+    "color": "Black",
+    "rating": 4.9,
+    "url": "https://www.quince.com/women/mongolian-cashmere-cropped-crew-cardigan?color=black"
+  },
+  {
+    "id": "bamboo-sheet-set",
+    "name": "White Bamboo Sheet Set",
+    "category": "Home/Bedding",
+    "price": 100.0,
+    "color": "White",
+    "rating": 4.8,
+    "url": "https://www.quince.com/",
+    "url_verified": false
+  },
+  {
+    "id": "cashmere-tee",
+    "name": "Elk Brown Mongolian Cashmere Tee",
+    "category": "Women/Cashmere",
+    "price": 49.9,
+    "color": "Elk Brown",
+    "rating": 4.8,
+    "url": "https://www.quince.com/women/cashmere/cashmere-tee-shirt?color=elk-brown"
+  },
+  {
+    "id": "engagement-ring-emerald-comfort-fit",
+    "name": "Yellow Gold Lab Grown Diamond Emerald Comfort Fit Engagement Ring - 2.5ct",
+    "category": "Jewelry",
+    "price": 2100.0,
+    "color": "Yellow Gold",
+    "rating": 5.0,
+    "url": "https://www.quince.com/",
+    "url_verified": false
+  },
+  {
+    "id": "cashmere-dog-sweater",
+    "name": "True Navy Mongolian Cashmere Cable Knit Dog Sweater",
+    "category": "Pets",
+    "price": 52.0,
+    "color": "True Navy",
+    "rating": 4.9,
+    "url": "https://www.quince.com/unisex/cable-dog-cashmere-sweater?color=true-navy"
+  },
+  {
+    "id": "electric-kettle-fellow-corvo",
+    "name": "Black Fellow Corvo EKG Pro Electric Kettle",
+    "category": "Home/Kitchen",
+    "price": 179.95,
+    "color": "Black",
+    "rating": 4.9,
+    "url": "https://www.quince.com/home/fellow-corvo-ekg-electric-kettle?color=black"
+  },
+  {
+    "id": "ceramic-vase-rippled",
+    "name": "White Sculptural Rippled Ceramic Vase",
+    "category": "Home/Decor",
+    "price": 79.9,
+    "color": "White",
+    "rating": 4.3,
+    "url": "https://www.quince.com/",
+    "url_verified": false
+  }
 ]
