@@ -1,63 +1,255 @@
 import { useState, useRef, useEffect } from "react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
-export default function Home() {
-  const [messages, setMessages] = useState([]);
-  const [input, setInput] = useState("");
-  const [loading, setLoading] = useState(false);
-  const chatBoxRef = useRef(null);
+const QUINCE = {
+  bg: "#FFFFFF",
+  text: "#1A1A1A",
+  topbar: "#1A1A1A",
+  accent: "#F0A878",
+  accentDark: "#4A2B18",
+  border: "#E5E5E5",
+  panelBg: "#FAFAF9"
+};
 
-  useEffect(() => {
-    if (chatBoxRef.current) {
-      chatBoxRef.current.scrollTop = chatBoxRef.current.scrollHeight;
-    }
-  }, [messages, loading]);
-
-  async function send() {
-    if (!input.trim() || loading) return;
-    const next = [...messages, { role: "user", content: input }];
-    setMessages(next);
-    setInput("");
-    setLoading(true);
-    try {
-      const res = await fetch("/api/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: next })
-      });
-      const data = await res.json();
-      const text = data.content?.find(b => b.type === "text")?.text
-        || data.error
-        || "(no reply)";
-      setMessages([...next, { role: "assistant", content: text }]);
-    } catch (e) {
-      setMessages([...next, { role: "assistant", content: "Network error — check the server is running." }]);
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  function handleKeyDown(e) {
-    if (e.key === "Enter" && !loading) send();
-  }
-
+function ChatIcon() {
   return (
-    <div style={{ maxWidth: 600, margin: "40px auto", fontFamily: "sans-serif" }}>
-      <h2>Quince Shopping Assistant</h2>
-      <div ref={chatBoxRef} style={{ height: 300, overflowY: "auto", border: "1px solid #ddd", padding: 12, marginBottom: 12 }}>
-        {messages.map((m, i) => (
-          <p key={i}><b>{m.role}:</b> {typeof m.content === "string" ? m.content : JSON.stringify(m.content)}</p>
-        ))}
-        {loading && <p><i>thinking...</i></p>}
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke={QUINCE.accentDark} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 8.4 8.4 0 0 1-3.9-.9L3 21l1.9-5.6A8.4 8.4 0 0 1 4 12.5 8.5 8.5 0 1 1 21 11.5Z" />
+    </svg>
+  );
+}
+
+function CloseIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round">
+      <path d="M18 6 6 18M6 6l12 12" />
+    </svg>
+  );
+}
+
+function SendIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={QUINCE.accentDark} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7Z" />
+    </svg>
+  );
+}
+
+function Bubble({ role, content }) {
+  const isUser = role === "user";
+  return (
+    <div style={{ display: "flex", justifyContent: isUser ? "flex-end" : "flex-start", margin: "6px 0" }}>
+      <div
+        style={{
+          maxWidth: "82%",
+          padding: "10px 14px",
+          borderRadius: 14,
+          fontSize: 14,
+          lineHeight: 1.5,
+          background: isUser ? QUINCE.accent : QUINCE.panelBg,
+          color: isUser ? QUINCE.accentDark : QUINCE.text,
+          border: isUser ? "none" : `1px solid ${QUINCE.border}`
+        }}
+      >
+        {isUser ? (
+          content
+        ) : (
+          <div className="md">
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
+          </div>
+        )}
       </div>
-      <input
-        value={input}
-        onChange={e => setInput(e.target.value)}
-        onKeyDown={handleKeyDown}
-        disabled={loading}
-        style={{ width: "80%" }}
-      />
-      <button onClick={send} disabled={loading}>Send</button>
     </div>
   );
 }
 
+export default function Home() {
+  const [open, setOpen] = useState(false);
+  const [messages, setMessages] = useState([
+    { role: "assistant", content: "Hi, I can help you find something or answer a question about your order. What are you looking for?" }
+  ]);
+  const [input, setInput] = useState("");
+  const [sending, setSending] = useState(false);
+  const scrollRef = useRef(null);
+
+  useEffect(() => {
+    if (scrollRef.current) scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+  }, [messages, open]);
+
+  async function send() {
+    if (!input.trim() || sending) return;
+    const next = [...messages, { role: "user", content: input }];
+    setMessages(next);
+    setInput("");
+    setSending(true);
+
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ messages: next.map(m => ({ role: m.role, content: m.content })) })
+      });
+      const data = await res.json();
+
+      if (!res.ok || data.error) {
+        setMessages([...next, { role: "assistant", content: data.error || "Something went wrong. Please try again." }]);
+        return;
+      }
+
+      let text = data.content?.find(b => b.type === "text")?.text || "I don't have an answer for that. Want me to connect you with support?";
+      if (data.truncated) text += "\n\n(response was cut short, ask me to continue if needed)";
+      setMessages([...next, { role: "assistant", content: text }]);
+    } catch {
+      setMessages([...next, { role: "assistant", content: "Something went wrong reaching the assistant. Please try again." }]);
+    } finally {
+      setSending(false);
+    }
+  }
+
+  function handleKey(e) {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      send();
+    }
+  }
+
+  return (
+    <div style={{ fontFamily: "-apple-system, 'Helvetica Neue', Arial, sans-serif", minHeight: "100vh", background: "#F7F6F3" }}>
+      {/* Placeholder host page, standing in for a Quince page during the demo */}
+      <div
+        style={{
+          position: "fixed",
+          inset: 0,
+          backgroundImage: "url(/quince-bg.png)",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          filter: "blur(6px)",
+          transform: "scale(1.05)",
+          zIndex: -1
+        }}
+      />
+      <div style={{ background: QUINCE.topbar, color: "#fff", textAlign: "center", padding: "6px 0", fontSize: 12, letterSpacing: 0.3 }}>
+        Free shipping &amp; easy returns for 365 days.
+      </div>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "18px 32px", borderBottom: `1px solid ${QUINCE.border}` }}>
+        <span style={{ fontFamily: "Georgia, serif", fontSize: 24 }}>Quince</span>
+        <div style={{ fontSize: 14, color: QUINCE.text, opacity: 0.7 }}>Sign In | Wishlist | Bag</div>
+      </div>
+      <div style={{ padding: "80px 32px", color: QUINCE.text, opacity: 0.5, fontSize: 14 }}>
+        Product page content goes here.
+      </div>
+
+      {/* Launcher bubble */}
+      {!open && (
+        <button
+          onClick={() => setOpen(true)}
+          aria-label="Open shopping assistant"
+          style={{
+            position: "fixed",
+            bottom: 24,
+            right: 24,
+            width: 56,
+            height: 56,
+            borderRadius: "50%",
+            background: QUINCE.accent,
+            border: "none",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            cursor: "pointer",
+            boxShadow: "0 4px 14px rgba(0,0,0,0.18)"
+          }}
+        >
+          <ChatIcon />
+        </button>
+      )}
+
+      {/* Slide-in panel */}
+      <div
+        style={{
+          position: "fixed",
+          top: 0,
+          right: 0,
+          height: "100vh",
+          width: 380,
+          maxWidth: "100vw",
+          background: QUINCE.bg,
+          borderLeft: `1px solid ${QUINCE.border}`,
+          boxShadow: "-4px 0 24px rgba(0,0,0,0.12)",
+          display: "flex",
+          flexDirection: "column",
+          transform: open ? "translateX(0)" : "translateX(100%)",
+          transition: "transform 220ms ease-out",
+          zIndex: 50
+        }}
+      >
+        <div style={{ background: QUINCE.topbar, color: "#fff", padding: "16px 18px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <span style={{ fontSize: 15, fontWeight: 500 }}>Quince Assistant</span>
+          <button
+            onClick={() => setOpen(false)}
+            aria-label="Close"
+            style={{ background: "transparent", border: "none", cursor: "pointer", padding: 4, display: "flex" }}
+          >
+            <CloseIcon />
+          </button>
+        </div>
+
+        <div ref={scrollRef} style={{ flex: 1, overflowY: "auto", padding: "14px 14px 6px" }}>
+          {messages.map((m, i) => (
+            <Bubble key={i} role={m.role} content={m.content} />
+          ))}
+          {sending && (
+            <div style={{ fontSize: 13, color: "#8a8a8a", padding: "4px 6px" }}>Thinking...</div>
+          )}
+        </div>
+
+        <div style={{ display: "flex", gap: 8, padding: 12, borderTop: `1px solid ${QUINCE.border}` }}>
+          <input
+            value={input}
+            onChange={e => setInput(e.target.value)}
+            onKeyDown={handleKey}
+            placeholder="Ask about a product or an order..."
+            style={{
+              flex: 1,
+              padding: "10px 12px",
+              borderRadius: 10,
+              border: `1px solid ${QUINCE.border}`,
+              fontSize: 14,
+              outline: "none"
+            }}
+          />
+          <button
+            onClick={send}
+            disabled={sending}
+            aria-label="Send"
+            style={{
+              width: 40,
+              height: 40,
+              borderRadius: 10,
+              background: QUINCE.accent,
+              border: "none",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: sending ? "default" : "pointer",
+              opacity: sending ? 0.6 : 1
+            }}
+          >
+            <SendIcon />
+          </button>
+        </div>
+      </div>
+
+      <style jsx global>{`
+        .md p { margin: 0 0 8px; }
+        .md p:last-child { margin-bottom: 0; }
+        .md ul, .md ol { margin: 0 0 8px 18px; padding: 0; }
+        .md a { color: #B5563C; text-decoration: underline; }
+        .md table { border-collapse: collapse; width: 100%; font-size: 13px; margin: 6px 0; table-layout: fixed; }
+        .md th, .md td { border: 1px solid ${QUINCE.border}; padding: 6px 8px; text-align: left; word-break: break-word; }
+        .md th { background: #F0EEE9; font-weight: 500; }
+      `}</style>
+    </div>
+  );
+}
