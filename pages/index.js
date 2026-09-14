@@ -12,6 +12,13 @@ const QUINCE = {
   panelBg: "#FAFAF9"
 };
 
+const SUGGESTIONS = [
+  { label: "Cashmere sweater under $100", query: "I'm looking for a cashmere sweater under $100" },
+  { label: "What's your return policy?", query: "What's your return policy?" },
+  { label: "Track or return my order", query: "I need to track or return my order" },
+  { label: "Suggest a gift idea", query: "Can you suggest a good gift idea?" }
+];
+
 function ChatIcon() {
   return (
     <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke={QUINCE.accentDark} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -77,9 +84,9 @@ export default function Home() {
     if (scrollRef.current) scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
   }, [messages, open]);
 
-  async function send() {
-    if (!input.trim() || sending) return;
-    const next = [...messages, { role: "user", content: input }];
+  async function sendText(text) {
+    if (!text.trim() || sending) return;
+    const next = [...messages, { role: "user", content: text }];
     setMessages(next);
     setInput("");
     setSending(true);
@@ -107,6 +114,10 @@ export default function Home() {
     }
   }
 
+  function send() {
+    sendText(input);
+  }
+
   function handleKey(e) {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
@@ -115,7 +126,7 @@ export default function Home() {
   }
 
   return (
-    <div style={{ fontFamily: "-apple-system, 'Helvetica Neue', Arial, sans-serif", minHeight: "100vh", background: "#F7F6F3" }}>
+    <div style={{ fontFamily: "-apple-system, 'Helvetica Neue', Arial, sans-serif", minHeight: "100vh" }}>
       {/* Placeholder host page, standing in for a Quince page during the demo */}
       <div
         style={{
@@ -124,7 +135,7 @@ export default function Home() {
           backgroundImage: "url(/quince-bg.png)",
           backgroundSize: "cover",
           backgroundPosition: "center",
-          filter: "blur(6px)",
+          filter: "blur(40px)",
           transform: "scale(1.05)",
           zIndex: -1
         }}
@@ -199,6 +210,27 @@ export default function Home() {
           {messages.map((m, i) => (
             <Bubble key={i} role={m.role} content={m.content} />
           ))}
+          {messages.length === 1 && !sending && (
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 8, padding: "4px 6px 8px" }}>
+              {SUGGESTIONS.map((s, i) => (
+                <button
+                  key={i}
+                  onClick={() => sendText(s.query)}
+                  style={{
+                    fontSize: 13,
+                    padding: "8px 12px",
+                    borderRadius: 16,
+                    border: `1px solid ${QUINCE.border}`,
+                    background: QUINCE.panelBg,
+                    color: QUINCE.accentDark,
+                    cursor: "pointer"
+                  }}
+                >
+                  {s.label}
+                </button>
+              ))}
+            </div>
+          )}
           {sending && (
             <div style={{ fontSize: 13, color: "#8a8a8a", padding: "4px 6px" }}>Thinking...</div>
           )}
@@ -238,6 +270,9 @@ export default function Home() {
           >
             <SendIcon />
           </button>
+        </div>
+        <div style={{ textAlign: "center", fontSize: 11, color: "#9a9a9a", padding: "6px 0 10px" }}>
+          Powered by Kinect
         </div>
       </div>
 
