@@ -3,20 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kinect Application — Project Dashboard</title>
+<title>Kinect — Applied Research</title>
 <style>
   :root{
-    --bg:#1A1310;
-    --panel:#251C17;
-    --panel-2:#2E2319;
-    --ink:#F1EAE0;
-    --ink-dim:#A99C8C;
-    --signal:#E3B23C;
-    --signal-dim:#8A6C2A;
-    --muted:#6B6259;
-    --line:#3A2D24;
-    --good:#7FA687;
-    --bad:#B3695C;
+    --bg:#F7F4EE;
+    --panel-tint:#F1EAD8;
+    --ink:#221C15;
+    --ink-dim:#7A7061;
+    --line:#E3DCCC;
+    --accent:#B8791A;
+    --accent-2:#1F6F64;
+    --bad:#A6483B;
+    --neutral-dot:#9C9284;
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;}
@@ -24,141 +22,102 @@
     background:var(--bg);
     color:var(--ink);
     font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    line-height:1.5;
+    line-height:1.45;
     -webkit-font-smoothing:antialiased;
   }
-  h1,h2,h3{
-    font-family:Georgia,"Iowan Old Style","Times New Roman",serif;
-    font-weight:400;
-    margin:0 0 6px 0;
-    letter-spacing:0.2px;
-  }
-  a{color:var(--signal);}
-  .wrap{max-width:1180px;margin:0 auto;padding:0 24px 80px;}
+  h1,h2,h3{font-family:Georgia,"Iowan Old Style","Times New Roman",serif;font-weight:400;margin:0;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px;}
 
-  header.hero{
-    padding:56px 24px 40px;
-    border-bottom:1px solid var(--line);
-  }
-  header.hero .wrap{padding:0;max-width:1180px;margin:0 auto;padding:0 24px;}
-  .kicker{color:var(--signal);font-size:14px;margin-bottom:10px;}
-  header.hero h1{font-size:40px;color:var(--ink);max-width:760px;}
-  header.hero p.sub{color:var(--ink-dim);max-width:640px;font-size:16px;margin-top:14px;}
+  header.hero{padding:34px 0 22px;}
+  .kicker{color:var(--accent);font-size:13px;letter-spacing:0.3px;margin-bottom:8px;}
+  header.hero h1{font-size:clamp(34px,4.4vw,52px);max-width:820px;color:var(--ink);}
+  header.hero p.sub{color:var(--ink-dim);font-size:15px;margin-top:10px;max-width:520px;}
 
-  nav.tabs{
-    position:sticky;top:0;z-index:50;
-    background:rgba(26,19,16,0.96);
-    backdrop-filter:blur(6px);
-    border-bottom:1px solid var(--line);
-  }
-  nav.tabs .wrap{display:flex;gap:4px;overflow-x:auto;padding-top:0;padding-bottom:0;}
-  nav.tabs button{
-    background:none;border:none;color:var(--ink-dim);
-    font-size:14px;padding:16px 14px;cursor:pointer;white-space:nowrap;
-    border-bottom:2px solid transparent;font-family:inherit;
-  }
-  nav.tabs button.active{color:var(--ink);border-bottom-color:var(--signal);}
+  nav.tabs{position:sticky;top:0;z-index:60;background:rgba(247,244,238,0.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);}
+  nav.tabs .inner{position:relative;display:flex;gap:2px;overflow-x:auto;}
+  nav.tabs button{background:none;border:none;color:var(--ink-dim);font-size:14.5px;padding:15px 16px;cursor:pointer;white-space:nowrap;font-family:inherit;position:relative;z-index:2;transition:color .15s;}
+  nav.tabs button.active{color:var(--ink);font-weight:600;}
   nav.tabs button:hover{color:var(--ink);}
+  .tab-underline{position:absolute;bottom:0;height:2px;background:var(--accent);transition:left .25s ease,width .25s ease;z-index:1;}
 
-  section.panel{display:none;padding:44px 0 20px;}
-  section.panel.active{display:block;}
+  section.panel{display:none;padding:26px 0 30px;min-height:560px;}
+  section.panel.active{display:block;animation:fadeUp .28s ease;}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
 
-  .section-head{margin-bottom:28px;max-width:720px;}
-  .section-head h2{font-size:26px;}
-  .section-head p{color:var(--ink-dim);font-size:15px;margin-top:6px;}
+  .section-head{margin-bottom:16px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;}
+  .section-head h2{font-size:clamp(24px,2.6vw,32px);}
+  .section-head .oneliner{color:var(--ink-dim);font-size:14px;}
 
-  .card{
-    background:var(--panel);
-    border:1px solid var(--line);
-    border-radius:6px;
-    padding:24px;
-  }
-  .grid{display:grid;gap:18px;}
-  .grid.cols-4{grid-template-columns:repeat(4,1fr);}
-  .grid.cols-3{grid-template-columns:repeat(3,1fr);}
-  .grid.cols-2{grid-template-columns:repeat(2,1fr);}
-  @media (max-width:820px){
-    .grid.cols-4,.grid.cols-3,.grid.cols-2{grid-template-columns:1fr;}
-  }
-
-  .stat{padding:20px;}
-  .stat .num{font-family:Georgia,serif;font-size:32px;color:var(--signal);}
-  .stat .label{color:var(--ink-dim);font-size:13px;margin-top:4px;}
-  .stat .flag{display:inline-block;margin-top:8px;font-size:11px;padding:2px 8px;border-radius:10px;border:1px solid var(--line);color:var(--ink-dim);}
+  .info-chip{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;border:1px solid var(--ink-dim);color:var(--ink-dim);font-size:11px;font-style:italic;font-family:Georgia,serif;cursor:default;flex-shrink:0;}
+  .info-chip:hover{border-color:var(--accent);color:var(--accent);}
 
   svg text{font-family:-apple-system,"Segoe UI",Roboto,sans-serif;fill:var(--ink);}
-  .sub-label{fill:var(--ink-dim) !important;font-size:11px;}
-  .tick-label{fill:var(--muted) !important;font-size:10px;}
 
-  .tooltip{
-    position:absolute;pointer-events:none;
-    background:var(--panel-2);border:1px solid var(--line);
-    padding:8px 12px;border-radius:5px;font-size:12.5px;
-    max-width:240px;color:var(--ink);opacity:0;transition:opacity .12s;
-    z-index:100;
-  }
+  .tooltip{position:absolute;pointer-events:none;background:var(--ink);color:var(--bg);padding:9px 13px;border-radius:5px;font-size:12.5px;max-width:260px;opacity:0;transition:opacity .12s;z-index:100;line-height:1.4;}
   .tooltip.show{opacity:1;}
 
-  .legend{display:flex;gap:18px;flex-wrap:wrap;margin-top:14px;font-size:12.5px;color:var(--ink-dim);}
-  .legend span{display:inline-flex;align-items:center;gap:6px;}
-  .legend i{width:10px;height:10px;border-radius:50%;display:inline-block;}
+  /* --- columns instead of card grid --- */
+  .stat-strip{display:flex;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:6px;}
+  .stat-strip .stat{flex:1;padding:20px 22px;border-right:1px solid var(--line);}
+  .stat-strip .stat:last-child{border-right:none;}
+  .stat .num{font-family:Georgia,serif;font-size:clamp(26px,2.6vw,36px);color:var(--accent);}
+  .stat .label{color:var(--ink-dim);font-size:12.5px;margin-top:4px;max-width:180px;}
 
-  .source-note{margin-top:16px;font-size:11.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px;}
-  .source-note a{color:var(--muted);text-decoration:underline;}
+  .row-list{border-top:1px solid var(--line);}
+  .row-list .row{display:flex;align-items:center;justify-content:space-between;padding:18px 4px;border-bottom:1px solid var(--line);cursor:pointer;transition:background .15s;}
+  .row-list .row:hover{background:var(--panel-tint);}
+  .row-list .row h3{font-size:17px;}
+  .row-list .row p{margin:2px 0 0;color:var(--ink-dim);font-size:13px;max-width:520px;}
+  .row-list .row .arrow{color:var(--accent);font-size:20px;opacity:0;transition:opacity .15s;flex-shrink:0;margin-left:12px;}
+  .row-list .row:hover .arrow{opacity:1;}
 
-  .flag-line{
-    display:flex;align-items:center;gap:8px;font-size:12px;
-    color:var(--ink-dim);margin-top:10px;
-  }
-  .flag-line .dot{width:8px;height:8px;border-radius:50%;}
-  .dot.real{background:var(--good);}
-  .dot.synthetic{background:var(--signal);}
-  .dot.proposed{background:var(--muted);}
+  .split{display:grid;grid-template-columns:1.4fr 0.9fr;gap:28px;align-items:start;}
+  @media (max-width:880px){.split{grid-template-columns:1fr;}}
 
-  .funnel-row{display:flex;align-items:center;gap:10px;margin-bottom:6px;}
-  .funnel-row .bar{height:34px;background:var(--panel-2);border:1px solid var(--line);display:flex;align-items:center;padding:0 12px;font-size:12.5px;color:var(--ink);border-radius:3px;}
-  .funnel-row .name{width:190px;font-size:12.5px;color:var(--ink-dim);text-align:right;flex-shrink:0;}
-  .funnel-row .reason{font-size:11px;color:var(--muted);}
+  .hover-hint{font-size:12px;color:var(--ink-dim);margin-bottom:8px;}
+  .side-readout{border-left:3px solid var(--accent);padding:6px 0 6px 16px;min-height:70px;}
+  .side-readout .name{font-weight:600;font-size:15px;}
+  .side-readout .detail{color:var(--ink-dim);font-size:13px;margin-top:4px;}
+  .tension{margin-top:20px;padding-top:16px;border-top:1px dashed var(--line);font-size:13.5px;color:var(--ink-dim);}
+  .tension b{color:var(--ink);}
 
-  .slider-box{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);}
-  .slider-box label{font-size:13px;color:var(--ink-dim);display:block;margin-bottom:8px;}
-  .slider-box input[type=range]{width:100%;accent-color:var(--signal);}
-  .slider-readout{display:flex;justify-content:space-between;margin-top:10px;font-size:12px;color:var(--muted);}
-  .slider-out-num{font-family:Georgia,serif;color:var(--signal);font-size:20px;}
+  .pill{display:inline-block;font-size:11.5px;padding:4px 10px;border:1px solid var(--line);border-radius:12px;color:var(--ink-dim);margin:0 6px 6px 0;}
+  .pill.cut{color:var(--bad);border-color:#E4C9C4;}
+  .pill.pick{color:#fff;background:var(--accent);border-color:var(--accent);font-weight:600;}
 
-  .pill{display:inline-block;font-size:11px;padding:3px 9px;border:1px solid var(--line);border-radius:10px;color:var(--ink-dim);margin-right:6px;margin-bottom:6px;}
+  .toggle-group{display:inline-flex;border:1px solid var(--line);border-radius:20px;overflow:hidden;margin-bottom:16px;}
+  .toggle-group button{background:none;border:none;padding:7px 16px;font-size:13px;color:var(--ink-dim);cursor:pointer;font-family:inherit;}
+  .toggle-group button.on{background:var(--ink);color:var(--bg);}
 
-  ul.plain{margin:8px 0 0;padding-left:18px;color:var(--ink-dim);font-size:13.5px;}
-  ul.plain li{margin-bottom:4px;}
+  .slider-line{display:flex;align-items:center;gap:14px;margin-top:14px;}
+  .slider-line input[type=range]{flex:1;accent-color:var(--accent);}
+  .big-out{font-family:Georgia,serif;color:var(--accent);font-size:clamp(30px,4vw,44px);line-height:1;transition:font-size .1s;}
+  .big-out-sub{color:var(--ink-dim);font-size:12px;}
 
-  .two-col{display:grid;grid-template-columns:1.1fr 0.9fr;gap:24px;}
-  @media (max-width:900px){.two-col{grid-template-columns:1fr;}}
+  .chip-row{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 4px;}
+  .chip{font-size:12px;padding:6px 12px;background:var(--panel-tint);border-radius:14px;color:var(--ink);}
 
-  .journey-stage{text-align:center;font-size:11.5px;color:var(--ink-dim);}
-  .journey-stage strong{display:block;color:var(--ink);font-size:12.5px;margin-bottom:2px;}
-
-  footer{padding:30px 24px;color:var(--muted);font-size:12px;border-top:1px solid var(--line);text-align:center;}
+  footer{padding:22px 28px;color:var(--ink-dim);font-size:11.5px;border-top:1px solid var(--line);text-align:center;}
 </style>
 </head>
 <body>
 
 <header class="hero">
   <div class="wrap">
-    <div class="kicker">Kinect AI — Growth Intern Application</div>
-    <h1>What this application is built on.</h1>
-    <p class="sub">Where Kinect wins, where the Quince demo stands, and where the growth-intern work actually starts. Real figures are cited; modeled figures are labeled as modeled.</p>
+    <div class="kicker">Kinect AI · Applied Research</div>
+    <h1>What actually moves revenue here.</h1>
+    <p class="sub">Real numbers are cited. Modeled numbers are flagged. Five findings — no filler.</p>
   </div>
 </header>
 
 <nav class="tabs">
-  <div class="wrap">
+  <div class="wrap inner">
     <button data-tab="overview" class="active">Overview</button>
-    <button data-tab="positioning">Competitive Positioning</button>
-    <button data-tab="journey">Adaptive Journey</button>
-    <button data-tab="funnel">Brand Selection</button>
-    <button data-tab="revenue">Revenue Leak</button>
-    <button data-tab="outbound">Outbound Pipeline</button>
-    <button data-tab="quince">Quince Demo</button>
+    <button data-tab="edge">The Edge</button>
+    <button data-tab="leak">The Leak</button>
+    <button data-tab="playbook">The Playbook</button>
+    <button data-tab="build">The Build</button>
+    <div class="tab-underline" id="underline"></div>
   </div>
 </nav>
 
@@ -166,374 +125,287 @@
 
   <!-- OVERVIEW -->
   <section class="panel active" id="overview">
-    <div class="section-head">
-      <h2>Six pieces, one application</h2>
-      <p>Each tab is a distinct claim. None of them repeat the same chart twice.</p>
+    <div class="stat-strip">
+      <div class="stat"><div class="num">5</div><div class="label">named alternatives Kinect competes against</div></div>
+      <div class="stat"><div class="num">4–7%</div><div class="label">revenue lift Kinect reports, own baseline</div></div>
+      <div class="stat"><div class="num">15→1</div><div class="label">brands vetted to one demo target</div></div>
+      <div class="stat"><div class="num">42</div><div class="label">real SKUs grounding the demo</div></div>
     </div>
-    <div class="grid cols-4">
-      <div class="card stat">
-        <div class="num">5</div>
-        <div class="label">Direct competitors, per Kinect's own comparison pages</div>
-        <div class="flag">real</div>
-      </div>
-      <div class="card stat">
-        <div class="num">4–7%</div>
-        <div class="label">Revenue lift Kinect reports across live stores, own baseline</div>
-        <div class="flag">real</div>
-      </div>
-      <div class="card stat">
-        <div class="num">15→1</div>
-        <div class="label">Brands vetted down to the Quince demo target</div>
-        <div class="flag">real</div>
-      </div>
-      <div class="card stat">
-        <div class="num">42</div>
-        <div class="label">Real Quince SKUs grounding the demo catalog</div>
-        <div class="flag">real</div>
-      </div>
-    </div>
-
-    <div class="grid cols-3" style="margin-top:18px;">
-      <div class="card">
-        <h3 style="font-size:16px;">Competitive Positioning</h3>
-        <p style="color:var(--ink-dim);font-size:13.5px;">Where Kinect sits against the 5 tools it names as alternatives — and why none of them occupy its corner.</p>
-      </div>
-      <div class="card">
-        <h3 style="font-size:16px;">Adaptive Journey</h3>
-        <p style="color:var(--ink-dim);font-size:13.5px;">Kinect's four real products, mapped to the five stages of a buying journey.</p>
-      </div>
-      <div class="card">
-        <h3 style="font-size:16px;">Brand Selection</h3>
-        <p style="color:var(--ink-dim);font-size:13.5px;">The actual vetting process that ruled out six brands and landed on Quince.</p>
-      </div>
-      <div class="card">
-        <h3 style="font-size:16px;">Revenue Leak</h3>
-        <p style="color:var(--ink-dim);font-size:13.5px;">Where a static storefront loses shoppers, and where an adaptive one recovers them.</p>
-      </div>
-      <div class="card">
-        <h3 style="font-size:16px;">Outbound Pipeline</h3>
-        <p style="color:var(--ink-dim);font-size:13.5px;">A proposed system for the actual job: sourcing, vetting, and pitching brands.</p>
-      </div>
-      <div class="card">
-        <h3 style="font-size:16px;">Quince Demo</h3>
-        <p style="color:var(--ink-dim);font-size:13.5px;">The thesis the build tests, and a modeled — not measured — performance range.</p>
-      </div>
+    <div class="row-list">
+      <div class="row" data-goto="edge"><div><h3>The Edge</h3><p>Where Kinect sits against its named rivals — and where that edge is thinnest.</p></div><div class="arrow">→</div></div>
+      <div class="row" data-goto="leak"><div><h3>The Leak</h3><p>Where a static storefront loses shoppers, and what recovering them is worth.</p></div><div class="arrow">→</div></div>
+      <div class="row" data-goto="playbook"><div><h3>The Playbook</h3><p>How the demo target got picked, and how the next ten would.</p></div><div class="arrow">→</div></div>
+      <div class="row" data-goto="build"><div><h3>The Build</h3><p>What the Quince demo is testing, and a modeled read on impact.</p></div><div class="arrow">→</div></div>
     </div>
   </section>
 
-  <!-- POSITIONING -->
-  <section class="panel" id="positioning">
+  <!-- THE EDGE -->
+  <section class="panel" id="edge">
     <div class="section-head">
-      <h2>Where Kinect Sits: Delivery Model × Surface Scope</h2>
-      <p>The 5 tools Kinect names in its own comparison pages, plotted against how they're delivered and how much of the problem they cover.</p>
+      <h2>Nobody else sits here — yet</h2>
+      <span class="info-chip" data-t="Category and alternatives per Kinect's own FAQ (trykinect.ai/machine): &quot;How is Kinect different from self-serve AI assistants like Rep AI or Alhena? Focus and motion — those tools bundle a broad, self-serve agent surface the brand's own team installs.&quot; Sales-first alternatives Zipchat, Manifest AI, Envive named on the same page.">i</span>
     </div>
-    <div class="card">
-      <svg viewBox="0 0 760 460" style="width:100%;height:auto;" id="posSvg">
-        <!-- axes -->
-        <line x1="90" y1="40" x2="90" y2="400" stroke="#3A2D24" stroke-width="1"/>
-        <line x1="90" y1="400" x2="700" y2="400" stroke="#3A2D24" stroke-width="1"/>
-        <text x="90" y="24" class="sub-label">On-site + off-site (agent-ready)</text>
-        <text x="90" y="418" class="sub-label">On-site only</text>
-        <text x="20" y="395" class="sub-label" transform="rotate(-90 20 395)">Self-serve</text>
-        <text x="20" y="70" class="sub-label" transform="rotate(-90 20 70)">White-glove</text>
-        <line x1="90" y1="220" x2="700" y2="220" stroke="#2E2319" stroke-dasharray="3 4"/>
-        <line x1="395" y1="40" x2="395" y2="400" stroke="#2E2319" stroke-dasharray="3 4"/>
+    <p class="hover-hint">Hover a point for its edge over Kinect. Drag nothing — this one's fixed.</p>
+    <div class="split">
+      <svg viewBox="0 0 620 400" style="width:100%;height:auto;">
+        <line x1="70" y1="20" x2="70" y2="350" stroke="#D8CFBB"/>
+        <line x1="70" y1="350" x2="600" y2="350" stroke="#D8CFBB"/>
+        <text x="70" y="14" font-size="11.5" fill="#7A7061">Reaches off-site agents too</text>
+        <text x="70" y="368" font-size="11.5" fill="#7A7061">On-site chat only</text>
+        <text x="16" y="345" font-size="11.5" fill="#7A7061" transform="rotate(-90 16 345)">Self-installed</text>
+        <text x="16" y="55" font-size="11.5" fill="#7A7061" transform="rotate(-90 16 55)">Team-run</text>
+        <line x1="70" y1="185" x2="600" y2="185" stroke="#EDE7D8" stroke-dasharray="3 4"/>
+        <line x1="335" y1="20" x2="335" y2="350" stroke="#EDE7D8" stroke-dasharray="3 4"/>
 
-        <!-- competitors, all self-serve / on-site only quadrant -->
-        <g class="dot" data-t="Rep AI — behavioral triggers, chat-only. Brand's own team installs and runs it.">
-          <circle cx="170" cy="330" r="8" fill="#6B6259"/>
-          <text x="184" y="326" font-size="12.5">Rep AI</text>
+        <g class="pt" data-name="Rep AI" data-detail="Behavioral-trigger popups, chat-only. No catalog grounding, no off-site reach.">
+          <circle cx="150" cy="280" r="9" fill="#9C9284"/>
         </g>
-        <g class="dot" data-t="Alhena — multi-platform, agentic checkout claims. Closest to Kinect's ambition, still self-serve.">
-          <circle cx="220" cy="300" r="8" fill="#6B6259"/>
-          <text x="234" y="296" font-size="12.5">Alhena</text>
+        <g class="pt" data-name="Alhena" data-detail="Closest to Kinect's ambition — claims multi-platform, agentic checkout. Still self-installed; the one to watch.">
+          <circle cx="195" cy="245" r="9" fill="#9C9284"/>
         </g>
-        <g class="dot" data-t="Zipchat — self-serve widget, sales-first framing, on-site only.">
-          <circle cx="150" cy="360" r="8" fill="#6B6259"/>
-          <text x="164" y="356" font-size="12.5">Zipchat</text>
+        <g class="pt" data-name="Zipchat" data-detail="Self-serve widget, sales-first framing, on-site only.">
+          <circle cx="130" cy="305" r="9" fill="#9C9284"/>
         </g>
-        <g class="dot" data-t="Manifest AI — configurable multi-agent, mid-market Shopify, self-installed.">
-          <circle cx="270" cy="345" r="8" fill="#6B6259"/>
-          <text x="284" y="341" font-size="12.5">Manifest AI</text>
+        <g class="pt" data-name="Manifest AI" data-detail="Configurable multi-agent, mid-market Shopify — same buyer as Kinect, narrower job.">
+          <circle cx="230" cy="290" r="9" fill="#9C9284"/>
         </g>
-        <g class="dot" data-t="Envive — enterprise multi-agent conversion, still a self-serve on-site surface.">
-          <circle cx="230" cy="375" r="8" fill="#6B6259"/>
-          <text x="244" y="371" font-size="12.5">Envive</text>
+        <g class="pt" data-name="Envive" data-detail="Enterprise multi-agent conversion. Different buyer tier, same on-site-only surface.">
+          <circle cx="205" cy="320" r="9" fill="#9C9284"/>
         </g>
-
-        <!-- Kinect -->
-        <g class="dot" data-t="Kinect — white-glove onboarding by the founding team, plus the Agent-Ready Storefront covering the off-site surface. The only one in this corner.">
-          <circle cx="590" cy="90" r="11" fill="#E3B23C"/>
-          <text x="606" y="86" font-size="13.5" font-weight="600" fill="#E3B23C">Kinect</text>
+        <g class="pt" data-name="Kinect" data-detail="White-glove onboarding by the founding team, plus the Agent-Ready Storefront covering off-site discovery. Alone in this corner today.">
+          <circle cx="470" cy="70" r="13" fill="#B8791A"/>
+          <text x="488" y="65" font-size="14" font-weight="600" fill="#B8791A">Kinect</text>
         </g>
       </svg>
-      <div class="legend">
-        <span><i style="background:#6B6259;"></i>Named alternative (self-serve, on-site only)</span>
-        <span><i style="background:#E3B23C;"></i>Kinect</span>
+      <div>
+        <div class="side-readout" id="edgeReadout">
+          <div class="name">Hover a point</div>
+          <div class="detail">Each dot is one of the tools Kinect names as an alternative.</div>
+        </div>
+        <div class="tension">
+          <b>The gap that's closable:</b> Alhena already claims multi-platform reach. If it adds team-run onboarding, Kinect's corner stops being empty — the moat is delivery model, not technology, and delivery models are copyable.
+        </div>
       </div>
-      <div class="source-note">Category and quadrant assignment per Kinect's own FAQ: "How is Kinect different from self-serve AI assistants like Rep AI or Alhena? Focus and motion — those tools bundle... a broad, self-serve agent surface the brand's own team installs." Sales-first alternatives (Zipchat, Manifest AI, Envive) named at trykinect.ai/machine. Positions within the self-serve quadrant are illustrative ordering, not measured coordinates.</div>
     </div>
   </section>
 
-  <!-- JOURNEY -->
-  <section class="panel" id="journey">
+  <!-- THE LEAK -->
+  <section class="panel" id="leak">
     <div class="section-head">
-      <h2>The Adaptive Storefront: Four Experiences Across the Buying Journey</h2>
-      <p>Kinect's four real products, each tied to a specific point in the path from click to checkout.</p>
+      <h2>Where shoppers disappear</h2>
+      <span class="info-chip" data-t="Percentages are Kinect's own published figures (trykinect.ai/how-we-measure, trykinect.ai/machine): 6-21% engaged-cohort conversion, 4-7% revenue lift, both against each store's own A/B baseline. Not causal, not Quince-specific. Flow widths are illustrative.">i</span>
     </div>
-    <div class="card">
-      <svg viewBox="0 0 1000 260" style="width:100%;height:auto;">
-        <line x1="60" y1="60" x2="940" y2="60" stroke="#3A2D24" stroke-width="2"/>
-        <!-- stage nodes -->
-        <g>
-          <circle cx="100" cy="60" r="7" fill="#A99C8C"/>
-          <circle cx="320" cy="60" r="7" fill="#A99C8C"/>
-          <circle cx="540" cy="60" r="7" fill="#A99C8C"/>
-          <circle cx="760" cy="60" r="7" fill="#A99C8C"/>
-          <circle cx="940" cy="60" r="7" fill="#A99C8C"/>
-        </g>
-        <text x="100" y="42" text-anchor="middle" font-size="12" fill="#A99C8C">Ad click</text>
-        <text x="320" y="42" text-anchor="middle" font-size="12" fill="#A99C8C">Landing</text>
-        <text x="540" y="42" text-anchor="middle" font-size="12" fill="#A99C8C">Product page</text>
-        <text x="760" y="42" text-anchor="middle" font-size="12" fill="#A99C8C">Conversation</text>
-        <text x="940" y="42" text-anchor="middle" font-size="12" fill="#A99C8C" text-anchor="end">Checkout</text>
-
-        <!-- experience blocks dropping to relevant stage -->
-        <g class="dot" data-t="Dynamic Landing Pages — carries the ad's message and matched products into the destination page.">
-          <line x1="320" y1="60" x2="320" y2="130" stroke="#E3B23C" stroke-width="2"/>
-          <rect x="230" y="130" width="180" height="54" rx="5" fill="#2E2319" stroke="#E3B23C"/>
-          <text x="320" y="152" text-anchor="middle" font-size="12.5" font-weight="600">Dynamic Landing</text>
-          <text x="320" y="168" text-anchor="middle" font-size="11" fill="#A99C8C">Pages</text>
-        </g>
-        <g class="dot" data-t="Dynamic Product Pages — one-tap question chips answer fit, sizing, pairing doubts right on the PDP.">
-          <line x1="540" y1="60" x2="540" y2="130" stroke="#E3B23C" stroke-width="2"/>
-          <rect x="450" y="130" width="180" height="54" rx="5" fill="#2E2319" stroke="#E3B23C"/>
-          <text x="540" y="152" text-anchor="middle" font-size="12.5" font-weight="600">Dynamic Product</text>
-          <text x="540" y="168" text-anchor="middle" font-size="11" fill="#A99C8C">Pages</text>
-        </g>
-        <g class="dot" data-t="AI Sales Rep — grounded in the full catalog, asks one or two clarifying questions, compares options honestly, moves toward checkout.">
-          <line x1="760" y1="60" x2="760" y2="130" stroke="#E3B23C" stroke-width="2"/>
-          <rect x="670" y="130" width="180" height="54" rx="5" fill="#2E2319" stroke="#E3B23C"/>
-          <text x="760" y="152" text-anchor="middle" font-size="12.5" font-weight="600">AI Sales Rep</text>
-          <text x="760" y="168" text-anchor="middle" font-size="11" fill="#A99C8C">(shopping guidance)</text>
-        </g>
-        <g class="dot" data-t="Generative Storefront — for select brands, the whole page recomposes per ask, verified against live catalog.">
-          <rect x="360" y="200" width="280" height="46" rx="5" fill="none" stroke="#6B6259" stroke-dasharray="4 3"/>
-          <text x="500" y="228" text-anchor="middle" font-size="12" fill="#A99C8C">Generative Storefront — spans the whole path, select brands only</text>
-        </g>
+    <p class="hover-hint">Drag to see what recovering the leak is worth.</p>
+    <div class="split">
+      <svg viewBox="0 0 780 320" style="width:100%;height:auto;" id="sankeySvg">
+        <rect x="10" y="30" width="24" height="260" fill="#9C9284"/>
+        <text x="8" y="20" font-size="12" fill="#7A7061">Traffic (100)</text>
+        <path id="pathBounce" d="" fill="#A6483B" opacity="0.5"/>
+        <path id="pathEngage" d="" fill="#9C9284" opacity="0.5"/>
+        <rect id="barBounce" x="300" width="22" fill="#A6483B"/>
+        <text id="labelBounce" font-size="12" fill="#A6483B"></text>
+        <rect id="barEngage" x="300" width="22" fill="#9C9284"/>
+        <text id="labelEngage" font-size="12" fill="#7A7061"></text>
+        <path id="pathLift" d="" fill="#B8791A" opacity="0.55"/>
+        <rect id="barConv" x="560" width="22" fill="#B8791A"/>
+        <text id="labelConv" font-size="12" fill="#B8791A"></text>
       </svg>
-      <div class="source-note">Source: trykinect.ai/machine — "The platform has four adaptive experiences" section, quoted paraphrase only. Stage mapping is our own interpretation of where each product acts.</div>
-    </div>
-  </section>
-
-  <!-- FUNNEL -->
-  <section class="panel" id="funnel">
-    <div class="section-head">
-      <h2>Brand Selection Funnel: 15 Candidates to 1</h2>
-      <p>The actual vetting process behind choosing Quince as the demo target — kept here because it's the same research work the growth-intern role asks for.</p>
-    </div>
-    <div class="card">
-      <div style="max-width:640px;margin:0 auto;">
-        <div class="funnel-row">
-          <div class="name">Candidates considered</div>
-          <div class="bar" style="width:100%;background:#2E2319;">15 brands screened</div>
+      <div>
+        <div class="big-out" id="leakOut">4.0%</div>
+        <div class="big-out-sub">net revenue lift, modeled at this engagement rate</div>
+        <div class="slider-line">
+          <input type="range" id="leakSlider" min="0.6" max="21" step="0.1" value="9.4">
         </div>
-        <div class="funnel-row">
-          <div class="name">Ruled out — wrong platform / existing AI</div>
-          <div class="bar" style="width:80%;">MyProtein (THG, not Shopify), Solo Stove (Simplr GPT bot), Vuori (OpenAI Buy-in-ChatGPT), Allbirds (pivoted to AI infra)</div>
-        </div>
-        <div class="funnel-row">
-          <div class="name">Ruled out — financial / ownership risk</div>
-          <div class="bar" style="width:55%;">Outdoor Voices (bankruptcy risk), Untuckit (mid-acquisition)</div>
-        </div>
-        <div class="funnel-row">
-          <div class="name">Backup candidate</div>
-          <div class="bar" style="width:32%;background:#2E2319;">Native — P&G-owned, no AI news found</div>
-        </div>
-        <div class="funnel-row">
-          <div class="name">Selected</div>
-          <div class="bar" style="width:22%;background:var(--signal);color:#1A1310;font-weight:600;">Quince — Shopify Plus, $10.1B valuation, no AI assistant</div>
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--ink-dim);">
+          <span>0.6% baseline</span><span>21% ceiling</span>
         </div>
       </div>
-      <div class="source-note">Vetting checklist applied: confirmed Shopify/Shopify Plus platform, live-tested for an existing weak assistant, checked for a recent AI-assistant press release. Source: project memory, brand-vetting sessions.</div>
     </div>
   </section>
 
-  <!-- REVENUE -->
-  <section class="panel" id="revenue">
+  <!-- PLAYBOOK -->
+  <section class="panel" id="playbook">
     <div class="section-head">
-      <h2>Where Revenue Leaks — And Where It Gets Recovered</h2>
-      <p>A Sankey view of a static storefront's drop-off, and the recovery band Kinect reports once an adaptive layer sits on top of it.</p>
+      <h2>How the target got picked</h2>
+      <span class="info-chip" data-t="Vetting checklist: confirmed Shopify/Shopify Plus platform, live-tested for an existing weak assistant, checked for a recent AI-assistant press release. Outbound pipeline is proposed, mapped to the growth-intern JD's own language: researching brands, testing ideas, direct pitching.">i</span>
     </div>
-    <div class="card">
-      <svg viewBox="0 0 900 380" style="width:100%;height:auto;" id="sankeySvg">
-        <!-- source node -->
-        <rect x="20" y="40" width="26" height="300" fill="#A99C8C"/>
-        <text x="10" y="30" font-size="12.5" fill="#A99C8C">Traffic (100)</text>
+    <div class="toggle-group">
+      <button class="on" data-view="vet">Vetting</button>
+      <button data-view="out">Outbound</button>
+    </div>
 
-        <!-- flows to bounce and browse -->
-        <path d="M46,60 C 220,60 220,60 380,60 L380,140 C220,140 220,60 46,60 Z" fill="#B3695C" opacity="0.55"/>
-        <path d="M46,110 C 220,110 220,240 380,240 L380,340 C220,340 220,110 46,110 Z" fill="#6B6259" opacity="0.55"/>
-
-        <g class="dot" data-t="Static storefront: roughly 96–99% of visitors leave without buying — the passive-surface problem Kinect's own thesis describes: conversion hovering in the low single digits.">
-          <rect x="380" y="40" width="26" height="100" fill="#B3695C"/>
-          <text x="416" y="70" font-size="12" fill="#B3695C">Bounce, unanswered (≈96–99%)</text>
-        </g>
-        <g class="dot" data-t="Shoppers who engage with an adaptive rep — the pool Kinect's engaged-cohort numbers describe.">
-          <rect x="380" y="200" width="26" height="140" fill="#6B6259"/>
-          <text x="416" y="230" font-size="12" fill="#6B6259">Reaches the rep, engages (variable)</text>
-        </g>
-
-        <!-- recovered branch -->
-        <path d="M406,220 C 600,220 600,90 760,90 L760,150 C600,150 600,280 406,280 Z" fill="#E3B23C" opacity="0.6"/>
-        <g class="dot" data-t="Engaged shoppers convert at 6–21% across Kinect's live stores — multiples of a typical site average — measured against each store's own A/B baseline.">
-          <rect x="760" y="70" width="26" height="90" fill="#E3B23C"/>
-          <text x="796" y="100" font-size="12" fill="#E3B23C">Converts, engaged (6–21%)</text>
-        </g>
-        <g class="dot" data-t="Net effect reported across live Kinect stores: 4–7% more revenue, measured against each brand's own baseline — not a store-wide causal guarantee.">
-          <rect x="760" y="200" width="26" height="90" fill="#7FA687"/>
-          <text x="796" y="230" font-size="12" fill="#7FA687">Net revenue lift (4–7%)</text>
-        </g>
+    <div id="vetView">
+      <p class="hover-hint">15 brands screened down to one.</p>
+      <div class="chip-row">
+        <span class="pill cut">MyProtein — wrong platform</span>
+        <span class="pill cut">Solo Stove — has a GPT bot</span>
+        <span class="pill cut">Vuori — on OpenAI's own flow</span>
+        <span class="pill cut">Allbirds — pivoted away</span>
+        <span class="pill cut">Outdoor Voices — bankruptcy risk</span>
+        <span class="pill cut">Untuckit — mid-acquisition</span>
+        <span class="pill">Native — backup, no AI found</span>
+        <span class="pill pick">Quince — selected</span>
+      </div>
+      <svg viewBox="0 0 640 90" style="width:100%;height:auto;margin-top:10px;">
+        <text x="0" y="20" font-size="13" fill="#7A7061">15</text>
+        <rect x="0" y="30" width="640" height="14" fill="#EDE7D8"/>
+        <rect x="0" y="30" width="384" height="14" fill="#D8CFBB"/>
+        <rect x="0" y="30" width="77" height="14" fill="#B8791A"/>
+        <text x="60" y="42" font-size="10" fill="#fff" text-anchor="middle">1 picked</text>
       </svg>
-      <div class="legend">
-        <span><i style="background:#B3695C;"></i>Leaked</span>
-        <span><i style="background:#6B6259;"></i>Engaged pool</span>
-        <span><i style="background:#E3B23C;"></i>Recovered</span>
-        <span><i style="background:#7FA687;"></i>Net lift</span>
-      </div>
-      <div class="source-note">All percentages are Kinect's own published, company-wide figures (trykinect.ai/how-we-measure and trykinect.ai/machine), reported as engaged-cohort behavior against each store's own baseline — not causal, not specific to the Quince demo. Flow widths are illustrative, not to scale.</div>
     </div>
-  </section>
 
-  <!-- OUTBOUND -->
-  <section class="panel" id="outbound">
-    <div class="section-head">
-      <h2>Proposed Outbound Pipeline: Sourcing to Pitch</h2>
-      <p>A system for the actual job description — researching brands, testing ideas, and pitching Kinect directly. Proposed, not yet built.</p>
-    </div>
-    <div class="card">
-      <svg viewBox="0 0 1000 160" style="width:100%;height:auto;">
-        <defs>
-          <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-            <path d="M0,0 L6,3 L0,6 Z" fill="#A99C8C"/>
-          </marker>
-        </defs>
-        <line x1="150" y1="80" x2="270" y2="80" stroke="#A99C8C" stroke-width="1.5" marker-end="url(#arrow)"/>
-        <line x1="410" y1="80" x2="530" y2="80" stroke="#A99C8C" stroke-width="1.5" marker-end="url(#arrow)"/>
-        <line x1="670" y1="80" x2="790" y2="80" stroke="#A99C8C" stroke-width="1.5" marker-end="url(#arrow)"/>
-
-        <g class="dot" data-t="Source: scan Shopify/Shopify Plus DTC brands via BuiltWith and app-store signals, filter to high-consideration catalogs Kinect targets.">
-          <rect x="10" y="40" width="140" height="80" rx="6" fill="#2E2319" stroke="#3A2D24"/>
-          <text x="80" y="75" text-anchor="middle" font-size="13" font-weight="600">Source</text>
-          <text x="80" y="93" text-anchor="middle" font-size="10.5" fill="#A99C8C">Platform + catalog scan</text>
-        </g>
-        <g class="dot" data-t="Vet: same checklist used for Quince — platform confirmed, existing assistant tested live, no recent AI press, no bankruptcy/M&A flags.">
-          <rect x="270" y="40" width="140" height="80" rx="6" fill="#2E2319" stroke="#3A2D24"/>
-          <text x="340" y="75" text-anchor="middle" font-size="13" font-weight="600">Vet</text>
-          <text x="340" y="93" text-anchor="middle" font-size="10.5" fill="#A99C8C">Fit + incumbent check</text>
-        </g>
-        <g class="dot" data-t="Prove: a small grounded demo or one-page teardown of the brand's current storefront gaps — same method as the Quince build.">
-          <rect x="530" y="40" width="140" height="80" rx="6" fill="#2E2319" stroke="#3A2D24"/>
-          <text x="600" y="75" text-anchor="middle" font-size="13" font-weight="600">Prove</text>
-          <text x="600" y="93" text-anchor="middle" font-size="10.5" fill="#A99C8C">Teardown or mini-demo</text>
-        </g>
-        <g class="dot" data-t="Pitch and track: short, direct outreach naming the specific gap found, logged against response and next steps.">
-          <rect x="790" y="40" width="180" height="80" rx="6" fill="#2E2319" stroke="#E3B23C"/>
-          <text x="880" y="75" text-anchor="middle" font-size="13" font-weight="600" fill="#E3B23C">Pitch + Track</text>
-          <text x="880" y="93" text-anchor="middle" font-size="10.5" fill="#A99C8C">Outreach log</text>
-        </g>
+    <div id="outView" style="display:none;">
+      <p class="hover-hint">Proposed, not yet run — the same method, repeated.</p>
+      <svg viewBox="0 0 900 110" style="width:100%;height:auto;">
+        <defs><marker id="ah" markerWidth="7" markerHeight="7" refX="5" refY="2.5" orient="auto"><path d="M0,0L5,2.5L0,5Z" fill="#9C9284"/></marker></defs>
+        <line x1="150" y1="55" x2="255" y2="55" stroke="#9C9284" marker-end="url(#ah)"/>
+        <line x1="380" y1="55" x2="485" y2="55" stroke="#9C9284" marker-end="url(#ah)"/>
+        <line x1="610" y1="55" x2="715" y2="55" stroke="#9C9284" marker-end="url(#ah)"/>
+        <g><rect x="0" y="15" width="150" height="80" rx="6" fill="#F1EAD8"/><text x="75" y="50" text-anchor="middle" font-size="13" font-weight="600">Source</text><text x="75" y="68" text-anchor="middle" font-size="10.5" fill="#7A7061">Platform scan</text></g>
+        <g><rect x="255" y="15" width="150" height="80" rx="6" fill="#F1EAD8"/><text x="330" y="50" text-anchor="middle" font-size="13" font-weight="600">Vet</text><text x="330" y="68" text-anchor="middle" font-size="10.5" fill="#7A7061">Fit check</text></g>
+        <g><rect x="485" y="15" width="150" height="80" rx="6" fill="#F1EAD8"/><text x="560" y="50" text-anchor="middle" font-size="13" font-weight="600">Prove</text><text x="560" y="68" text-anchor="middle" font-size="10.5" fill="#7A7061">Mini-demo</text></g>
+        <g><rect x="715" y="15" width="185" height="80" rx="6" fill="#B8791A"/><text x="807" y="50" text-anchor="middle" font-size="13" font-weight="600" fill="#fff">Pitch + Track</text><text x="807" y="68" text-anchor="middle" font-size="10.5" fill="#fff">Outreach log</text></g>
       </svg>
-      <div class="flag-line"><span class="dot proposed"></span>Proposed system — not built or run yet. Mapped directly to the growth-intern JD: "researching DTC brands... testing ideas... direct pitching to brands."</div>
     </div>
   </section>
 
-  <!-- QUINCE -->
-  <section class="panel" id="quince">
+  <!-- THE BUILD -->
+  <section class="panel" id="build">
     <div class="section-head">
-      <h2>Quince Demo: What It's Testing</h2>
-      <p>Not a status log — the thesis the build exists to prove, and what it would take to see it land.</p>
+      <h2>What the demo is testing</h2>
+      <span class="info-chip" data-t="Range anchors: A.L.C. — 9.4% vs 0.6% baseline, 16x engaged-cohort, n=181 (trykinect.ai/case-studies/alc). Loosey Goosey — 5.8x engaged-cohort, 190 orders (trykinect.ai/case-studies/loosey-goosey). Both engaged-cohort behavior, not causal lift — same framing used here. AOV of $85 is an assumption, not a measured Quince figure.">i</span>
     </div>
-    <div class="two-col">
-      <div class="card">
-        <h3 style="font-size:17px;">The thesis</h3>
-        <p style="color:var(--ink-dim);font-size:13.5px;">Grounded retrieval plus honest escalation, mirroring Kinect's own line: <em>"built into your store, not bolted on."</em> The rep answers from a real 42-SKU catalog, escalates account and order questions rather than guessing, and admits gaps instead of hallucinating.</p>
-        <ul class="plain">
-          <li>Catalog search resolves real pre-purchase questions (e.g. "cashmere sweater under $100")</li>
-          <li>Policy questions answered from verified facts, not invented</li>
-          <li>Account/order questions escalate — Kinect's own product deliberately does the same</li>
-          <li>Out-of-catalog asks are admitted, not hallucinated</li>
-        </ul>
-        <div class="flag-line"><span class="dot real"></span>Behavior above is grounding-tested and passing. End-to-end UI send/reply/close is not yet confirmed.</div>
+    <p style="font-size:14px;color:var(--ink-dim);max-width:560px;">Grounded retrieval, honest escalation — Kinect's own line: <em>built into your store, not bolted on.</em></p>
+    <div class="chip-row">
+      <span class="chip">Grounded catalog search</span>
+      <span class="chip">Escalates, doesn't guess</span>
+      <span class="chip">Admits gaps, never hallucinates</span>
+    </div>
+    <div class="split" style="margin-top:6px;">
+      <div>
+        <div class="hover-hint">Not measured — modeled on Kinect's own published range.</div>
+        <div class="slider-line">
+          <input type="range" id="buildSlider" min="0.6" max="21" step="0.1" value="9.4">
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--ink-dim);">
+          <span>0.6% baseline</span><span>21% ceiling</span>
+        </div>
       </div>
-      <div class="card">
-        <h3 style="font-size:17px;">Projected Performance (Modeled, Pre-Launch)</h3>
-        <p style="color:var(--ink-dim);font-size:13px;">No live traffic yet — nothing here is measured. The slider spans Kinect's own published range across real stores.</p>
-        <div class="slider-box">
-          <label for="convSlider">Assumed engaged-shopper conversion rate</label>
-          <input type="range" id="convSlider" min="0.6" max="21" step="0.1" value="9.4">
-          <div class="slider-readout">
-            <span>0.6% (site baseline)</span>
-            <span>21% (Kinect ceiling)</span>
-          </div>
-        </div>
-        <div style="margin-top:16px;display:flex;gap:26px;">
-          <div>
-            <div class="slider-out-num" id="convOut">9.4%</div>
-            <div style="font-size:11.5px;color:var(--ink-dim);">of engaged shoppers, modeled</div>
-          </div>
-          <div>
-            <div class="slider-out-num" id="ordersOut">~9</div>
-            <div style="font-size:11.5px;color:var(--ink-dim);">projected orders per 100 engaged, modeled</div>
-          </div>
-        </div>
-        <div class="flag-line"><span class="dot synthetic"></span>Fully synthetic — modeled on Kinect's own published range, not on any Quince traffic.</div>
-        <div class="source-note">Range anchors: A.L.C. case study — engaged shoppers buy at 9.4% vs 0.6% baseline, 16× engaged-cohort, n=181 engaged shoppers (trykinect.ai/case-studies/alc). Loosey Goosey — 5.8× engaged-cohort rate, 190 engaged orders (trykinect.ai/case-studies/loosey-goosey). Both reported as engaged-cohort behavior, not causal lift — the same framing used here.</div>
+      <div style="display:flex;gap:26px;">
+        <div><div class="big-out" id="convOut">9.4%</div><div class="big-out-sub">engaged shoppers, modeled</div></div>
+        <div><div class="big-out" id="dollarOut">$798</div><div class="big-out-sub">recovered per 100 engaged, at $85 AOV</div></div>
       </div>
     </div>
   </section>
 
 </div>
 
-<footer>Built for the Kinect AI growth-intern application. Figures marked "real" are cited to their source; figures marked "synthetic" or "proposed" are explicitly modeled or not yet built.</footer>
-
+<footer>Figures cited are Kinect's own published results. Figures marked modeled are not measured.</footer>
 <div class="tooltip" id="tt"></div>
 
 <script>
-  // Tabs
+  // Tabs + animated underline
   const tabButtons = document.querySelectorAll('nav.tabs button');
   const panels = document.querySelectorAll('section.panel');
-  tabButtons.forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      tabButtons.forEach(b=>b.classList.remove('active'));
-      panels.forEach(p=>p.classList.remove('active'));
-      btn.classList.add('active');
-      document.getElementById(btn.dataset.tab).classList.add('active');
-    });
-  });
+  const underline = document.getElementById('underline');
+  function moveUnderline(btn){
+    underline.style.left = btn.offsetLeft + 'px';
+    underline.style.width = btn.offsetWidth + 'px';
+  }
+  function activate(tab){
+    const btn = [...tabButtons].find(b=>b.dataset.tab===tab);
+    tabButtons.forEach(b=>b.classList.remove('active'));
+    panels.forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(tab).classList.add('active');
+    moveUnderline(btn);
+  }
+  tabButtons.forEach(btn=>btn.addEventListener('click',()=>activate(btn.dataset.tab)));
+  document.querySelectorAll('.row-list .row').forEach(r=>r.addEventListener('click',()=>activate(r.dataset.goto)));
+  window.addEventListener('load',()=>moveUnderline(document.querySelector('nav.tabs button.active')));
+  window.addEventListener('resize',()=>moveUnderline(document.querySelector('nav.tabs button.active')));
 
-  // Tooltips for any element with data-t, delegated
+  // Tooltip / info chips
   const tt = document.getElementById('tt');
   document.querySelectorAll('[data-t]').forEach(el=>{
-    el.addEventListener('mousemove', (e)=>{
+    el.addEventListener('mousemove',(e)=>{
       tt.textContent = el.getAttribute('data-t');
-      tt.style.left = (e.pageX + 14) + 'px';
-      tt.style.top = (e.pageY + 14) + 'px';
+      tt.style.left = Math.min(e.pageX+14, window.innerWidth-280) + 'px';
+      tt.style.top = (e.pageY+14) + 'px';
       tt.classList.add('show');
     });
-    el.addEventListener('mouseleave', ()=>{ tt.classList.remove('show'); });
+    el.addEventListener('mouseleave',()=>tt.classList.remove('show'));
   });
 
-  // Slider logic — projected performance
-  const slider = document.getElementById('convSlider');
-  const convOut = document.getElementById('convOut');
-  const ordersOut = document.getElementById('ordersOut');
-  function updateSlider(){
-    const v = parseFloat(slider.value);
-    convOut.textContent = v.toFixed(1) + '%';
-    ordersOut.textContent = '~' + Math.round(v);
+  // Edge side readout
+  const edgeReadout = document.getElementById('edgeReadout');
+  document.querySelectorAll('#edge .pt').forEach(pt=>{
+    pt.addEventListener('mouseenter',()=>{
+      edgeReadout.innerHTML = '<div class="name">'+pt.dataset.name+'</div><div class="detail">'+pt.dataset.detail+'</div>';
+    });
+  });
+
+  // Playbook toggle
+  document.querySelectorAll('.toggle-group button').forEach(b=>{
+    b.addEventListener('click',()=>{
+      document.querySelectorAll('.toggle-group button').forEach(x=>x.classList.remove('on'));
+      b.classList.add('on');
+      document.getElementById('vetView').style.display = b.dataset.view==='vet' ? '' : 'none';
+      document.getElementById('outView').style.display = b.dataset.view==='out' ? '' : 'none';
+    });
+  });
+
+  // Sankey render, driven by slider
+  function renderSankey(rate){
+    // rate: 0.6 - 21
+    const t = (rate - 0.6) / (21 - 0.6); // 0..1
+    const bounceH = 260 * (1 - 0.15*t) ; // bounce shrinks slightly as recovery improves visually
+    const engageH = 260 - bounceH;
+    const bY = 30, eY = 30 + bounceH;
+    document.getElementById('pathBounce').setAttribute('d',
+      `M34,${bY+10} C 160,${bY+10} 160,${bY+bounceH/2} 300,${bY+bounceH/2} L300,${bY+bounceH} C160,${bY+bounceH} 160,${bY+10} 34,${bY+10} Z`);
+    document.getElementById('pathEngage').setAttribute('d',
+      `M34,${eY+10} C 160,${eY+10} 160,${eY+engageH/2} 300,${eY+engageH/2} L300,${eY+engageH} C160,${eY+engageH} 160,${eY+10} 34,${eY+10} Z`);
+    document.getElementById('barBounce').setAttribute('y', bY);
+    document.getElementById('barBounce').setAttribute('height', bounceH);
+    document.getElementById('labelBounce').setAttribute('x', 332);
+    document.getElementById('labelBounce').setAttribute('y', bY+bounceH/2+4);
+    document.getElementById('labelBounce').textContent = 'Bounce, unanswered';
+    document.getElementById('barEngage').setAttribute('y', eY);
+    document.getElementById('barEngage').setAttribute('height', engageH);
+    document.getElementById('labelEngage').setAttribute('x', 332);
+    document.getElementById('labelEngage').setAttribute('y', eY+engageH/2+4);
+    document.getElementById('labelEngage').textContent = 'Reaches the rep';
+
+    const liftH = 40 + t*180;
+    const liftY = 175 - liftH/2;
+    document.getElementById('pathLift').setAttribute('d',
+      `M322,${eY+10} C 440,${eY+10} 440,${liftY+liftH/2} 560,${liftY+liftH/2} L560,${liftY+liftH} C440,${liftY+liftH} 440,${eY+10} 322,${eY+10} Z`);
+    document.getElementById('barConv').setAttribute('y', liftY);
+    document.getElementById('barConv').setAttribute('height', liftH);
+    document.getElementById('labelConv').setAttribute('x', 592);
+    document.getElementById('labelConv').setAttribute('y', liftY+liftH/2+4);
+    document.getElementById('labelConv').textContent = 'Recovered';
+
+    const lift = (4 + t*3).toFixed(1);
+    document.getElementById('leakOut').textContent = lift + '%';
   }
-  slider.addEventListener('input', updateSlider);
-  updateSlider();
+  const leakSlider = document.getElementById('leakSlider');
+  leakSlider.addEventListener('input', ()=>renderSankey(parseFloat(leakSlider.value)));
+  renderSankey(9.4);
+
+  // Build tab slider
+  const buildSlider = document.getElementById('buildSlider');
+  const convOut = document.getElementById('convOut');
+  const dollarOut = document.getElementById('dollarOut');
+  function updateBuild(){
+    const v = parseFloat(buildSlider.value);
+    convOut.textContent = v.toFixed(1) + '%';
+    dollarOut.textContent = '$' + Math.round(v * 85);
+  }
+  buildSlider.addEventListener('input', updateBuild);
+  updateBuild();
 </script>
 
 </body>
