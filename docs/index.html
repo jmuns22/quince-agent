@@ -46,14 +46,15 @@
 
   .section-head{margin-bottom:16px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;}
   .section-head h2{font-size:clamp(24px,2.6vw,32px);}
-  .section-head .oneliner{color:var(--ink-dim);font-size:14px;}
+  .section-head .oneliner{color:var(--ink-dim);font-size:15.5px;}
 
   .info-chip{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;border:1px solid var(--ink-dim);color:var(--ink-dim);font-size:11px;font-style:italic;font-family:Georgia,serif;cursor:default;flex-shrink:0;}
   .info-chip:hover{border-color:var(--accent);color:var(--accent);}
 
   svg text{font-family:-apple-system,"Segoe UI",Roboto,sans-serif;fill:var(--ink);}
 
-  .tooltip{position:absolute;pointer-events:none;background:var(--ink);color:var(--bg);padding:9px 13px;border-radius:5px;font-size:12.5px;max-width:260px;opacity:0;transition:opacity .12s;z-index:100;line-height:1.4;}
+  .tooltip{position:absolute;pointer-events:none;background:var(--ink);color:var(--bg);padding:12px 16px;border-radius:6px;font-size:15px;max-width:300px;opacity:0;transition:opacity .12s;z-index:100;line-height:1.45;}
+  .tooltip .tt-name{font-weight:700;display:block;margin-bottom:3px;}
   .tooltip.show{opacity:1;}
 
   /* --- columns instead of card grid --- */
@@ -61,27 +62,27 @@
   .stat-strip .stat{flex:1;padding:20px 22px;border-right:1px solid var(--line);}
   .stat-strip .stat:last-child{border-right:none;}
   .stat .num{font-family:Georgia,serif;font-size:clamp(26px,2.6vw,36px);color:var(--accent);}
-  .stat .label{color:var(--ink-dim);font-size:12.5px;margin-top:4px;max-width:180px;}
+  .stat .label{color:var(--ink-dim);font-size:13.5px;margin-top:4px;max-width:180px;}
 
   .row-list{border-top:1px solid var(--line);}
   .row-list .row{display:flex;align-items:center;justify-content:space-between;padding:18px 4px;border-bottom:1px solid var(--line);cursor:pointer;transition:background .15s;}
   .row-list .row:hover{background:var(--panel-tint);}
-  .row-list .row h3{font-size:17px;}
-  .row-list .row p{margin:2px 0 0;color:var(--ink-dim);font-size:13px;max-width:520px;}
+  .row-list .row h3{font-size:18.5px;}
+  .row-list .row p{margin:3px 0 0;color:var(--ink-dim);font-size:14.5px;max-width:520px;}
   .row-list .row .arrow{color:var(--accent);font-size:20px;opacity:0;transition:opacity .15s;flex-shrink:0;margin-left:12px;}
   .row-list .row:hover .arrow{opacity:1;}
 
   .split{display:grid;grid-template-columns:1.4fr 0.9fr;gap:28px;align-items:start;}
   @media (max-width:880px){.split{grid-template-columns:1fr;}}
 
-  .hover-hint{font-size:12px;color:var(--ink-dim);margin-bottom:8px;}
-  .side-readout{border-left:3px solid var(--accent);padding:6px 0 6px 16px;min-height:70px;}
-  .side-readout .name{font-weight:600;font-size:15px;}
-  .side-readout .detail{color:var(--ink-dim);font-size:13px;margin-top:4px;}
-  .tension{margin-top:20px;padding-top:16px;border-top:1px dashed var(--line);font-size:13.5px;color:var(--ink-dim);}
+  .hover-hint{font-size:14px;color:var(--ink-dim);margin-bottom:10px;}
+  .tension{margin-top:8px;padding:18px 0 0;border-top:1px dashed var(--line);font-size:16px;color:var(--ink-dim);line-height:1.55;}
   .tension b{color:var(--ink);}
+  .color-key{margin-top:14px;font-size:12.5px;color:var(--ink-dim);}
+  .color-key span{display:inline-flex;align-items:center;gap:5px;margin-right:12px;}
+  .color-key i{width:9px;height:9px;border-radius:50%;display:inline-block;}
 
-  .pill{display:inline-block;font-size:11.5px;padding:4px 10px;border:1px solid var(--line);border-radius:12px;color:var(--ink-dim);margin:0 6px 6px 0;}
+  .pill{display:inline-block;font-size:13px;padding:5px 12px;border:1px solid var(--line);border-radius:12px;color:var(--ink-dim);margin:0 6px 6px 0;}
   .pill.cut{color:var(--bad);border-color:#E4C9C4;}
   .pill.pick{color:#fff;background:var(--accent);border-color:var(--accent);font-weight:600;}
 
@@ -95,7 +96,7 @@
   .big-out-sub{color:var(--ink-dim);font-size:12px;}
 
   .chip-row{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 4px;}
-  .chip{font-size:12px;padding:6px 12px;background:var(--panel-tint);border-radius:14px;color:var(--ink);}
+  .chip{font-size:13.5px;padding:7px 14px;background:var(--panel-tint);border-radius:14px;color:var(--ink);}
 
   footer{padding:22px 28px;color:var(--ink-dim);font-size:11.5px;border-top:1px solid var(--line);text-align:center;}
 </style>
@@ -145,43 +146,49 @@
       <h2>Nobody else sits here — yet</h2>
       <span class="info-chip" data-t="Category and alternatives per Kinect's own FAQ (trykinect.ai/machine): &quot;How is Kinect different from self-serve AI assistants like Rep AI or Alhena? Focus and motion — those tools bundle a broad, self-serve agent surface the brand's own team installs.&quot; Sales-first alternatives Zipchat, Manifest AI, Envive named on the same page.">i</span>
     </div>
-    <p class="hover-hint">Hover a point for its edge over Kinect. Drag nothing — this one's fixed.</p>
+    <p class="hover-hint">Hover a point — its edge over Kinect appears above it.</p>
     <div class="split">
-      <svg viewBox="0 0 620 400" style="width:100%;height:auto;">
-        <line x1="70" y1="20" x2="70" y2="350" stroke="#D8CFBB"/>
-        <line x1="70" y1="350" x2="600" y2="350" stroke="#D8CFBB"/>
-        <text x="70" y="14" font-size="11.5" fill="#7A7061">Reaches off-site agents too</text>
-        <text x="70" y="368" font-size="11.5" fill="#7A7061">On-site chat only</text>
-        <text x="16" y="345" font-size="11.5" fill="#7A7061" transform="rotate(-90 16 345)">Self-installed</text>
-        <text x="16" y="55" font-size="11.5" fill="#7A7061" transform="rotate(-90 16 55)">Team-run</text>
-        <line x1="70" y1="185" x2="600" y2="185" stroke="#EDE7D8" stroke-dasharray="3 4"/>
-        <line x1="335" y1="20" x2="335" y2="350" stroke="#EDE7D8" stroke-dasharray="3 4"/>
-
-        <g class="pt" data-name="Rep AI" data-detail="Behavioral-trigger popups, chat-only. No catalog grounding, no off-site reach.">
-          <circle cx="150" cy="280" r="9" fill="#9C9284"/>
-        </g>
-        <g class="pt" data-name="Alhena" data-detail="Closest to Kinect's ambition — claims multi-platform, agentic checkout. Still self-installed; the one to watch.">
-          <circle cx="195" cy="245" r="9" fill="#9C9284"/>
-        </g>
-        <g class="pt" data-name="Zipchat" data-detail="Self-serve widget, sales-first framing, on-site only.">
-          <circle cx="130" cy="305" r="9" fill="#9C9284"/>
-        </g>
-        <g class="pt" data-name="Manifest AI" data-detail="Configurable multi-agent, mid-market Shopify — same buyer as Kinect, narrower job.">
-          <circle cx="230" cy="290" r="9" fill="#9C9284"/>
-        </g>
-        <g class="pt" data-name="Envive" data-detail="Enterprise multi-agent conversion. Different buyer tier, same on-site-only surface.">
-          <circle cx="205" cy="320" r="9" fill="#9C9284"/>
-        </g>
-        <g class="pt" data-name="Kinect" data-detail="White-glove onboarding by the founding team, plus the Agent-Ready Storefront covering off-site discovery. Alone in this corner today.">
-          <circle cx="470" cy="70" r="13" fill="#B8791A"/>
-          <text x="488" y="65" font-size="14" font-weight="600" fill="#B8791A">Kinect</text>
-        </g>
-      </svg>
       <div>
-        <div class="side-readout" id="edgeReadout">
-          <div class="name">Hover a point</div>
-          <div class="detail">Each dot is one of the tools Kinect names as an alternative.</div>
+        <svg viewBox="0 0 620 400" style="width:100%;height:auto;">
+          <line x1="70" y1="20" x2="70" y2="350" stroke="#D8CFBB"/>
+          <line x1="70" y1="350" x2="600" y2="350" stroke="#D8CFBB"/>
+          <text x="70" y="14" font-size="14" fill="#7A7061">Reaches off-site agents too</text>
+          <text x="70" y="370" font-size="14" fill="#7A7061">On-site chat only</text>
+          <text x="18" y="345" font-size="14" fill="#7A7061" transform="rotate(-90 18 345)">Self-installed</text>
+          <text x="18" y="55" font-size="14" fill="#7A7061" transform="rotate(-90 18 55)">Team-run</text>
+          <line x1="70" y1="185" x2="600" y2="185" stroke="#EDE7D8" stroke-dasharray="3 4"/>
+          <line x1="335" y1="20" x2="335" y2="350" stroke="#EDE7D8" stroke-dasharray="3 4"/>
+
+          <g class="pt" data-name="Rep AI" data-detail="Behavioral-trigger popups, chat-only. No catalog grounding, no off-site reach.">
+            <circle cx="150" cy="280" r="10" fill="#5B7FA6"/>
+          </g>
+          <g class="pt" data-name="Alhena" data-detail="Closest to Kinect's ambition — claims multi-platform, agentic checkout. Still self-installed; the one to watch.">
+            <circle cx="195" cy="245" r="10" fill="#7B5EA6"/>
+          </g>
+          <g class="pt" data-name="Zipchat" data-detail="Self-serve widget, sales-first framing, on-site only.">
+            <circle cx="130" cy="305" r="10" fill="#2F8F6B"/>
+          </g>
+          <g class="pt" data-name="Manifest AI" data-detail="Configurable multi-agent, mid-market Shopify — same buyer as Kinect, narrower job.">
+            <circle cx="230" cy="290" r="10" fill="#B2593F"/>
+          </g>
+          <g class="pt" data-name="Envive" data-detail="Enterprise multi-agent conversion. Different buyer tier, same on-site-only surface.">
+            <circle cx="205" cy="320" r="10" fill="#2B3A55"/>
+          </g>
+          <g class="pt" data-name="Kinect" data-detail="White-glove onboarding by the founding team, plus the Agent-Ready Storefront covering off-site discovery. Alone in this corner today.">
+            <circle cx="470" cy="70" r="14" fill="#B8791A"/>
+            <text x="490" y="75" font-size="17" font-weight="600" fill="#B8791A">Kinect</text>
+          </g>
+        </svg>
+        <div class="color-key">
+          <span><i style="background:#5B7FA6;"></i>Rep AI</span>
+          <span><i style="background:#7B5EA6;"></i>Alhena</span>
+          <span><i style="background:#2F8F6B;"></i>Zipchat</span>
+          <span><i style="background:#B2593F;"></i>Manifest AI</span>
+          <span><i style="background:#2B3A55;"></i>Envive</span>
+          — distinguishing colors, not verified brand palettes.
         </div>
+      </div>
+      <div>
         <div class="tension">
           <b>The gap that's closable:</b> Alhena already claims multi-platform reach. If it adds team-run onboarding, Kinect's corner stops being empty — the moat is delivery model, not technology, and delivery models are copyable.
         </div>
@@ -199,16 +206,16 @@
     <div class="split">
       <svg viewBox="0 0 780 320" style="width:100%;height:auto;" id="sankeySvg">
         <rect x="10" y="30" width="24" height="260" fill="#9C9284"/>
-        <text x="8" y="20" font-size="12" fill="#7A7061">Traffic (100)</text>
+        <text x="8" y="20" font-size="14" fill="#7A7061">Traffic (100)</text>
         <path id="pathBounce" d="" fill="#A6483B" opacity="0.5"/>
         <path id="pathEngage" d="" fill="#9C9284" opacity="0.5"/>
         <rect id="barBounce" x="300" width="22" fill="#A6483B"/>
-        <text id="labelBounce" font-size="12" fill="#A6483B"></text>
+        <text id="labelBounce" font-size="14" fill="#A6483B"></text>
         <rect id="barEngage" x="300" width="22" fill="#9C9284"/>
-        <text id="labelEngage" font-size="12" fill="#7A7061"></text>
+        <text id="labelEngage" font-size="14" fill="#7A7061"></text>
         <path id="pathLift" d="" fill="#B8791A" opacity="0.55"/>
         <rect id="barConv" x="560" width="22" fill="#B8791A"/>
-        <text id="labelConv" font-size="12" fill="#B8791A"></text>
+        <text id="labelConv" font-size="14" fill="#B8791A"></text>
       </svg>
       <div>
         <div class="big-out" id="leakOut">4.0%</div>
@@ -246,26 +253,52 @@
         <span class="pill">Native — backup, no AI found</span>
         <span class="pill pick">Quince — selected</span>
       </div>
-      <svg viewBox="0 0 640 90" style="width:100%;height:auto;margin-top:10px;">
-        <text x="0" y="20" font-size="13" fill="#7A7061">15</text>
-        <rect x="0" y="30" width="640" height="14" fill="#EDE7D8"/>
-        <rect x="0" y="30" width="384" height="14" fill="#D8CFBB"/>
-        <rect x="0" y="30" width="77" height="14" fill="#B8791A"/>
-        <text x="60" y="42" font-size="10" fill="#fff" text-anchor="middle">1 picked</text>
+      <svg viewBox="0 0 640 110" style="width:100%;height:auto;margin-top:10px;">
+        <text x="0" y="18" font-size="15" fill="#7A7061">15 screened</text>
+        <polygon points="0,30 640,30 480,95 160,95" fill="#EDE7D8"/>
+        <polygon points="60,30 580,30 460,95 180,95" fill="#D8CFBB" opacity="0.8"/>
+        <polygon points="220,30 420,30 390,95 250,95" fill="#B8791A"/>
+        <text x="320" y="68" font-size="14" fill="#fff" text-anchor="middle" font-weight="600">Quince</text>
       </svg>
     </div>
 
     <div id="outView" style="display:none;">
       <p class="hover-hint">Proposed, not yet run — the same method, repeated.</p>
-      <svg viewBox="0 0 900 110" style="width:100%;height:auto;">
-        <defs><marker id="ah" markerWidth="7" markerHeight="7" refX="5" refY="2.5" orient="auto"><path d="M0,0L5,2.5L0,5Z" fill="#9C9284"/></marker></defs>
-        <line x1="150" y1="55" x2="255" y2="55" stroke="#9C9284" marker-end="url(#ah)"/>
-        <line x1="380" y1="55" x2="485" y2="55" stroke="#9C9284" marker-end="url(#ah)"/>
-        <line x1="610" y1="55" x2="715" y2="55" stroke="#9C9284" marker-end="url(#ah)"/>
-        <g><rect x="0" y="15" width="150" height="80" rx="6" fill="#F1EAD8"/><text x="75" y="50" text-anchor="middle" font-size="13" font-weight="600">Source</text><text x="75" y="68" text-anchor="middle" font-size="10.5" fill="#7A7061">Platform scan</text></g>
-        <g><rect x="255" y="15" width="150" height="80" rx="6" fill="#F1EAD8"/><text x="330" y="50" text-anchor="middle" font-size="13" font-weight="600">Vet</text><text x="330" y="68" text-anchor="middle" font-size="10.5" fill="#7A7061">Fit check</text></g>
-        <g><rect x="485" y="15" width="150" height="80" rx="6" fill="#F1EAD8"/><text x="560" y="50" text-anchor="middle" font-size="13" font-weight="600">Prove</text><text x="560" y="68" text-anchor="middle" font-size="10.5" fill="#7A7061">Mini-demo</text></g>
-        <g><rect x="715" y="15" width="185" height="80" rx="6" fill="#B8791A"/><text x="807" y="50" text-anchor="middle" font-size="13" font-weight="600" fill="#fff">Pitch + Track</text><text x="807" y="68" text-anchor="middle" font-size="10.5" fill="#fff">Outreach log</text></g>
+      <svg viewBox="0 0 940 140" style="width:100%;height:auto;">
+        <defs>
+          <marker id="ah" markerWidth="7" markerHeight="7" refX="5" refY="2.5" orient="auto"><path d="M0,0L5,2.5L0,5Z" fill="#9C9284"/></marker>
+        </defs>
+        <line x1="155" y1="60" x2="255" y2="60" stroke="#9C9284" stroke-width="1.5" marker-end="url(#ah)"/>
+        <line x1="395" y1="60" x2="495" y2="60" stroke="#9C9284" stroke-width="1.5" marker-end="url(#ah)"/>
+        <line x1="635" y1="60" x2="735" y2="60" stroke="#9C9284" stroke-width="1.5" marker-end="url(#ah)"/>
+
+        <g>
+          <rect x="0" y="10" width="155" height="105" rx="8" fill="#F1EAD8"/>
+          <circle cx="77" cy="42" r="13" fill="none" stroke="#B8791A" stroke-width="2.5"/>
+          <line x1="86" y1="51" x2="95" y2="60" stroke="#B8791A" stroke-width="2.5" stroke-linecap="round"/>
+          <text x="77" y="82" text-anchor="middle" font-size="15" font-weight="600">Source</text>
+          <text x="77" y="100" text-anchor="middle" font-size="13.5" fill="#7A7061">Platform scan</text>
+        </g>
+        <g>
+          <rect x="255" y="10" width="140" height="105" rx="8" fill="#F1EAD8"/>
+          <path d="M325,26 L337,32 L337,46 C337,56 331,62 325,65 C319,62 313,56 313,46 L313,32 Z" fill="none" stroke="#B8791A" stroke-width="2.5"/>
+          <path d="M318,44 L323,49 L332,38" fill="none" stroke="#B8791A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="325" y="82" text-anchor="middle" font-size="15" font-weight="600">Vet</text>
+          <text x="325" y="100" text-anchor="middle" font-size="13.5" fill="#7A7061">Fit check</text>
+        </g>
+        <g>
+          <rect x="495" y="10" width="140" height="105" rx="8" fill="#F1EAD8"/>
+          <path d="M557,24 h16 v9 l12,26 c2,5 -1,9 -6,9 h-28 c-5,0 -8,-4 -6,-9 l12,-26 Z" fill="none" stroke="#B8791A" stroke-width="2.5" stroke-linejoin="round"/>
+          <line x1="553" y1="52" x2="581" y2="52" stroke="#B8791A" stroke-width="2"/>
+          <text x="565" y="82" text-anchor="middle" font-size="15" font-weight="600">Prove</text>
+          <text x="565" y="100" text-anchor="middle" font-size="13.5" fill="#7A7061">Mini-demo</text>
+        </g>
+        <g>
+          <rect x="735" y="10" width="200" height="105" rx="8" fill="#B8791A"/>
+          <path d="M815,30 L845,42 L830,55 L822,48 Z" fill="#fff"/>
+          <text x="835" y="82" text-anchor="middle" font-size="15" font-weight="600" fill="#fff">Pitch + Track</text>
+          <text x="835" y="100" text-anchor="middle" font-size="13.5" fill="#F1EAD8">Outreach log</text>
+        </g>
       </svg>
     </div>
   </section>
@@ -338,12 +371,22 @@
     el.addEventListener('mouseleave',()=>tt.classList.remove('show'));
   });
 
-  // Edge side readout
-  const edgeReadout = document.getElementById('edgeReadout');
+  // Edge dots — tooltip anchored above the point
   document.querySelectorAll('#edge .pt').forEach(pt=>{
+    const c = pt.querySelector('circle');
     pt.addEventListener('mouseenter',()=>{
-      edgeReadout.innerHTML = '<div class="name">'+pt.dataset.name+'</div><div class="detail">'+pt.dataset.detail+'</div>';
+      tt.innerHTML = '<span class="tt-name">'+pt.dataset.name+'</span>'+pt.dataset.detail;
+      tt.style.visibility = 'hidden';
+      tt.classList.add('show');
+      const r = c.getBoundingClientRect();
+      const tw = tt.offsetWidth, th = tt.offsetHeight;
+      let left = r.left + window.scrollX + r.width/2 - tw/2;
+      left = Math.max(8, Math.min(left, window.innerWidth - tw - 8));
+      tt.style.left = left + 'px';
+      tt.style.top = (r.top + window.scrollY - th - 12) + 'px';
+      tt.style.visibility = 'visible';
     });
+    pt.addEventListener('mouseleave',()=>tt.classList.remove('show'));
   });
 
   // Playbook toggle
